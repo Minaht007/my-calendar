@@ -39,7 +39,14 @@ const CalendarGrid = ({ calendar }) => {
   return (
     <GridWrapper>
       {calendar.map((day) => (
-        <CellWrapper key={day.date} date={day.date}>
+        <CellWrapper
+          key={day.date}
+          date={day.date}
+          isWeekend={
+            new Date(day.date).getDay() === 6 ||
+            new Date(day.date).getDay() === 0
+          }
+        >
           <RowInCell justifyContent="flex-end">
             <DayWrapper>{day.date.slice(-2)}</DayWrapper>
           </RowInCell>
