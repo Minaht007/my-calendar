@@ -1,17 +1,18 @@
 import React from "react";
 import CalendarHeader from "./calendarHeader/calendarHeader";
 import PeriodMonitor from "./periodMonitor/periodMonitor";
-import CalendarGrid from "./calendarGrid/calendarGrids.jsx";
+import Calendar from "../../page/calendar";
 
 const CalendarComponents = () => {
   return (
     <div>
       <CalendarHeader />
       <PeriodMonitor />
-      <CalendarGrid />
+      <Calendar />
 
       <h2>Calendar</h2>
     </div>
   );
 };
+
 export default CalendarComponents;

@@ -1,34 +1,48 @@
 import React from "react";
-import style from "styled-components";
+import styled from "styled-components";
 
-const GridWrapper = style.div`
-display: grid;
+const GridWrapper = styled.div`
+  display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
   grid-gap: 1px;
   background-color: rgb(245, 242, 98);
 `;
 
-const CellWrapper = style.div`
-
-min-width: 148px;
-min-height: 80px;
-background-color: rgb(183, 232, 235);
-color: rgb(237, 55, 67);
-text-align: right;
-padding: 4px;
-border-radius: 4px;
+const CellWrapper = styled.div`
+  min-width: 148px;
+  min-height: 80px;
+  background-color: rgb(161, 201, 240);
+  color: rgb(237, 55, 67);
+  border-radius: 4px;
 `;
 
-const CalendarGrid = () => {
-  const totalDays = 42;
-  const daysArray = [...Array(42)];
+const RowInCell = styled.div`
+  display: flex;
+  justify-content: ${(props) =>
+    props.justifyContent ? props.justifyContent : "flex-start"};
+`;
+
+const DayWrapper = styled.div`
+  height: 33px;
+  width: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const CalendarGrid = ({ calendar }) => {
   return (
     <GridWrapper>
-      {daysArray.map((_, i) => {
-        return <CellWrapper>{i}</CellWrapper>;
-      })}
+      {calendar.map((day) => (
+        <CellWrapper key={day.date}>
+          <RowInCell justifyContent="flex-end">
+            <DayWrapper>{day.date.slice(-2)}</DayWrapper>
+          </RowInCell>
+        </CellWrapper>
+      ))}
     </GridWrapper>
   );
 };
+
 export default CalendarGrid;
