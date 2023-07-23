@@ -7,27 +7,34 @@ import {
   format,
 } from "date-fns";
 
+const getCurrentMonth = (date) => format(date, "MMMM");
+const getCurrentYear = (date) => format(date, "yyyy");
+const formatDate = (date) => format(date, "yyyy-MM-dd");
+
 const getCalendarDates = () => {
   const options = {
     year: "numeric",
-    month: "numeric",
+    month: "long",
     day: "numeric",
     timeZone: "UTC",
   };
-
-  const startDate = startOfWeek(startOfMonth(new Date()), { weekStartsOn: 1 });
-  const endDate = endOfWeek(endOfMonth(new Date()), { weekStartsOn: 1 });
-  const formatDate = (date) => format(date, "yyyy-MM-dd");
+  const today = new Date();
+  const startDate = startOfWeek(startOfMonth(today), { weekStartsOn: 1 });
+  const endDate = endOfWeek(endOfMonth(today), { weekStartsOn: 1 });
 
   const calendar = [];
 
   let currentDay = startDate;
   while (currentDay <= endDate) {
-    calendar.push({ date: formatDate(currentDay) });
+    calendar.push({
+      date: formatDate(currentDay),
+      monthName: getCurrentMonth(currentDay),
+      year: getCurrentYear(currentDay),
+    });
     currentDay = addDays(currentDay, 1);
   }
 
   return calendar;
 };
 
-export default getCalendarDates;
+export { formatDate, getCalendarDates };

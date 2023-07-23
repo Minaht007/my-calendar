@@ -1,4 +1,5 @@
 import React from "react";
+
 import styled from "styled-components";
 
 const DivWraper = styled.div`
@@ -32,12 +33,12 @@ const TodayBtm = styled(BtnWrapper)`
   font-weight: bold;
 `;
 
-const PeriodMonitor = () => {
+const PeriodMonitor = ({ month, year }) => {
   return (
     <DivWraper>
       <div>
-        <TitleWrapper>Month</TitleWrapper>
-        <TextWrapper>2023</TextWrapper>
+        <TitleWrapper>{month}</TitleWrapper>
+        <TextWrapper>{year}</TextWrapper>
       </div>
 
       <div>

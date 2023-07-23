@@ -2,6 +2,7 @@ import React from "react";
 import CalendarHeader from "./calendarHeader/calendarHeader";
 import PeriodMonitor from "./periodMonitor/periodMonitor";
 import Calendar from "../../page/calendar";
+import { getCalendarDates, formatDate } from "../helper/calendarHelper";
 import styled from "styled-components";
 
 const ShadowWrapper = styled.div`
@@ -15,13 +16,18 @@ const ShadowWrapper = styled.div`
 `;
 
 const CalendarComponents = () => {
+  const calendarDates = getCalendarDates();
+  const today = calendarDates.find(
+    (day) => day.date === formatDate(new Date())
+  );
+  const monthName = today ? today.monthName : null;
+  const year = today ? today.year : null;
+
   return (
     <ShadowWrapper>
       <CalendarHeader />
-      <PeriodMonitor />
+      <PeriodMonitor month={monthName} year={year} />
       <Calendar />
-
-      <h2>CalendarComponent</h2>
     </ShadowWrapper>
   );
 };
