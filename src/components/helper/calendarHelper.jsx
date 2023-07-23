@@ -15,9 +15,8 @@ const getCalendarDates = () => {
     timeZone: "UTC",
   };
 
-  const startDate = startOfWeek(startOfMonth(new Date()), { weekStartsOn: 1 }); // Начало недели - понедельник
-  const endDate = endOfWeek(endOfMonth(new Date()), { weekStartsOn: 1 }); // Конец недели - понедельник
-
+  const startDate = startOfWeek(startOfMonth(new Date()), { weekStartsOn: 1 });
+  const endDate = endOfWeek(endOfMonth(new Date()), { weekStartsOn: 1 });
   const formatDate = (date) => format(date, "yyyy-MM-dd");
 
   const calendar = [];
