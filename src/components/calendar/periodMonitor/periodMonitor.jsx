@@ -17,7 +17,10 @@ const TitleWrapper = styled(TextWrapper)`
   font-weight: bold;
   margin-right: 8px;
 `;
-
+const BtnsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
 const BtnWrapper = styled.button`
 border: unset;
 background-color: #565759;
@@ -41,11 +44,11 @@ const PeriodMonitor = ({ month, year }) => {
         <TextWrapper>{year}</TextWrapper>
       </div>
 
-      <div>
+      <BtnsWrapper>
         <BtnWrapper> &lt; </BtnWrapper>
         <TodayBtm>Today</TodayBtm>
         <BtnWrapper> &gt; </BtnWrapper>
-      </div>
+      </BtnsWrapper>
     </DivWraper>
   );
 };
