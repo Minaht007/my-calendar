@@ -77,7 +77,7 @@ const CalendarGrid = ({ calendar }) => {
           <RowInCell justifyContent="flex-end">
             <DayWrapper>
               {day.date === todayDay.getDate() ? (
-                <CurrentDay className="isCurrentDay">
+                <CurrentDay className={isCurrentDay}>
                   {day.date.slice(-2)}
                 </CurrentDay>
               ) : (
