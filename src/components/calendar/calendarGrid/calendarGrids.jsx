@@ -51,10 +51,15 @@ const CurrentDay = styled.div`
     background-color: #0091ea;
   }
 `;
+
 const isCurrentDay = (day) => {
-  const todayDay = new Date();
-  return todayDay.getDate() === day.getDate();
+  const todayDay = new Date().getDate();
+  console.log(todayDay);
+  return todayDay === day.getDate();
 };
+
+const currentDate = new Date();
+console.log(isCurrentDay(currentDate));
 
 const CalendarGrid = ({ calendar }) => {
   const [todayDay, setTodayDay] = useState(new Date());
