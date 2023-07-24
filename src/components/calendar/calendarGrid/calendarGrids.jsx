@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { isWeekend } from "date-fns";
 
@@ -35,7 +36,33 @@ const DayWrapper = styled.div`
   justify-content: center;
 `;
 
+const CurrentDay = styled.div`
+  display: flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: ${isWeekend ? "#0ecf4e" : "#1E1F21"};
+  color: ##000000;
+
+  &.isCurrentDay {
+    border-radius: 50%;
+    background-color: #0091ea;
+  }
+`;
+const isCurrentDay = (day) => {
+  const todayDay = new Date();
+  return todayDay.getDate() === day.getDate();
+};
+
 const CalendarGrid = ({ calendar }) => {
+  const [todayDay, setTodayDay] = useState(new Date());
+
+  useEffect(() => {
+    setTodayDay(new Date());
+  }, []);
+
   return (
     <GridWrapper>
       {calendar.map((day) => (
@@ -48,7 +75,15 @@ const CalendarGrid = ({ calendar }) => {
           }
         >
           <RowInCell justifyContent="flex-end">
-            <DayWrapper>{day.date.slice(-2)}</DayWrapper>
+            <DayWrapper>
+              {day.date === todayDay.getDate() ? (
+                <CurrentDay className="isCurrentDay">
+                  {day.date.slice(-2)}
+                </CurrentDay>
+              ) : (
+                <CurrentDay>{day.date.slice(-2)}</CurrentDay>
+              )}
+            </DayWrapper>
           </RowInCell>
         </CellWrapper>
       ))}
