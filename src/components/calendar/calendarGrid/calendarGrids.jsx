@@ -24,8 +24,7 @@ const CellWrapper = styled.div`
 
 const RowInCell = styled.div`
   display: flex;
-  justify-content: ${(props) =>
-    props.justifycontent ? props.justifycontent : "flex-start"};
+  justify-content: ${(props) => props.justifycontent || "flex-start"};
 `;
 
 const DayWrapper = styled.div`
@@ -43,23 +42,19 @@ const CurrentDay = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
-  background-color: ${isWeekend ? "#0ecf4e" : "#1E1F21"};
+
   color: ##000000;
 
   &.isCurrentDay {
     border-radius: 50%;
-    background-color: #0091ea;
+    background-color: #d8f2ee;
   }
 `;
 
 const isCurrentDay = (day) => {
-  const todayDay = new Date().getDate();
-  console.log(todayDay);
-  return todayDay === day.getDate();
+  const todayDay = new Date();
+  return todayDay.getDate() === new Date(day).getDate();
 };
-
-const currentDate = new Date();
-console.log(isCurrentDay(currentDate));
 
 const CalendarGrid = ({ calendar }) => {
   const [todayDay, setTodayDay] = useState(new Date());
@@ -71,25 +66,14 @@ const CalendarGrid = ({ calendar }) => {
   return (
     <GridWrapper>
       {calendar.map((day) => (
-        <CellWrapper
-          key={day.date}
-          date={day.date}
-          isWeekend={
-            new Date(day.date).getDay() === 6 ||
-            new Date(day.date).getDay() === 0
-          }
-        >
-          <RowInCell justifyContent="flex-end">
+        <CellWrapper key={day.date} date={day.date}>
+          <RowInCell justifycontent="flex-end">
             <DayWrapper>
-              {day.date === todayDay.getDate() ? (
-                <CurrentDay className={isCurrentDay(day.date)}>
-                  {day.date.slice(-2)}
-                </CurrentDay>
-              ) : (
-                <CurrentDay className={CurrentDay}>
-                  {day.date.slice(-2)}
-                </CurrentDay>
-              )}
+              <CurrentDay
+                className={isCurrentDay(day.date) ? "isCurrentDay" : ""}
+              >
+                {day.date.slice(-2)}
+              </CurrentDay>
             </DayWrapper>
           </RowInCell>
         </CellWrapper>

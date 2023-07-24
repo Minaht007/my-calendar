@@ -21,3 +21,10 @@
 //   //   border-radius: 50%;
 //   //   background-color: #0091ea;
 // }
+
+// background-color: ${props.isweekend ? "#0ecf4e" : "#1E1F21"};
+
+// isweekend={
+//             new Date(day.date).getDay() === 6 ||
+//             new Date(day.date).getDay() === 0
+//           }
