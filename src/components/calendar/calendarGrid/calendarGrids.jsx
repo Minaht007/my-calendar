@@ -28,11 +28,13 @@ const RowInCell = styled.div`
 `;
 
 const DayWrapper = styled.div`
-  height: 33px;
-  width: 33px;
+  height: 25px;
+  width: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 4px;
+  margin-top: 4px;
 `;
 
 const CurrentDay = styled.div`

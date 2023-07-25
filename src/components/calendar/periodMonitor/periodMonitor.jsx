@@ -1,11 +1,13 @@
 import React from "react";
 
+import mainStyle from "../../../scss/_common.scss";
+import { rgb } from "polished";
 import styled from "styled-components";
 
 const DivWraper = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: #1e1f21;
+  background-color: #545151;
   color: #f5f7f6;
   padding: 16px;
 `;
@@ -23,7 +25,7 @@ const BtnsWrapper = styled.div`
 `;
 const BtnWrapper = styled.button`
 border: unset;
-background-color: #565759;
+background-color: #c4c0c0;
 height: 24px;
 margin-right: 2px;
 border-radius: 4px;
