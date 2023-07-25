@@ -4,11 +4,10 @@ import PeriodMonitor from "./periodMonitor/periodMonitor";
 import Calendar from "../../page/calendar";
 import { getCalendarDates, formatDate } from "../helper/calendarHelper";
 // import CalendarNavigate from "../helper/calendarNav";
-import { format, compareAsc } from "date-fns";
-import { sub, addDays, isToday } from "date-fns";
+
+import { sub, addDays, format, compareAsc } from "date-fns";
 import { useState } from "react";
 import styled from "styled-components";
-import { months } from "moment/moment";
 
 const ShadowWrapper = styled.div`
   border-radius: 8px;
@@ -41,7 +40,7 @@ const CalendarComponents = () => {
   const pfevHandlMonth = () => {
     const prevMonth = sub(currentMonth, { months: 1 });
     setCurrentMonth(prevMonth);
-    console.log(setCurrentMonth);
+    return prevMonth;
   };
   // const todayHandle = () => console.log("today");
   // const nextHandle = () => console.log("next");
