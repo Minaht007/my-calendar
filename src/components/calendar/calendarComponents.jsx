@@ -31,17 +31,15 @@ const CalendarComponents = () => {
   const [currenyDay, setCurrendDay] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
-  const prevHandleDay = () => {
-    const prevDate = sub(currenyDay, { days: 1 });
-    setCurrendDay(prevDate);
-    console.log("prev");
-  };
+  // const prevHandleDay = () => {
+  //   const prevDate = sub(currenyDay, { days: 1 });
+  //   setCurrendDay(prevDate);
+  //   console.log("prev");
+  // };
 
   const pfevHandlMonth = () => {
     const prevMonth = sub(currentMonth, { months: 1 });
     setCurrentMonth(prevMonth);
-    console.log(prevMonth);
-    return prevMonth;
   };
   // const todayHandle = () => console.log("today");
   // const nextHandle = () => console.log("next");
