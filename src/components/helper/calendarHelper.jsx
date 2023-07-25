@@ -6,6 +6,7 @@ import {
   addDays,
   format,
 } from "date-fns";
+import { useState } from "react";
 
 const getCurrentMonth = (date) => format(date, "MMMM");
 const getCurrentYear = (date) => format(date, "yyyy");
@@ -21,6 +22,8 @@ const getCalendarDates = () => {
   const today = new Date();
   const startDate = startOfWeek(startOfMonth(today), { weekStartsOn: 1 });
   const endDate = endOfWeek(endOfMonth(today), { weekStartsOn: 1 });
+
+  const { nowDay, setNowDay } = useState;
 
   const calendar = [];
 

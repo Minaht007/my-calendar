@@ -28,3 +28,10 @@
 //             new Date(day.date).getDay() === 6 ||
 //             new Date(day.date).getDay() === 0
 //           }
+
+//   const prevHandle = () => {
+//     // Внесены изменения в объект с аргументами функции sub()
+//     const prevDate = sub(today, { days: 1, months: 1, years: 1 });
+//     setToday(prevDate);
+//     console.log("prev");
+//   };

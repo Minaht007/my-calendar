@@ -3,6 +3,7 @@ import CalendarHeader from "./calendarHeader/calendarHeader";
 import PeriodMonitor from "./periodMonitor/periodMonitor";
 import Calendar from "../../page/calendar";
 import { getCalendarDates, formatDate } from "../helper/calendarHelper";
+import CalendarNavigate from "../helper/calendarNav";
 import styled from "styled-components";
 
 const ShadowWrapper = styled.div`
@@ -15,7 +16,7 @@ const ShadowWrapper = styled.div`
   box-shadow: 0 0 0 0.5px #0ff25a, 0 8px 20px 6px #888;
 `;
 
-const CalendarComponents = () => {
+const CalendarComponents = ({ prevHandle, todayHandle, nextHandle }) => {
   const calendarDates = getCalendarDates();
   const today = calendarDates.find(
     (day) => day.date === formatDate(new Date())
@@ -23,10 +24,21 @@ const CalendarComponents = () => {
   const monthName = today ? today.monthName : null;
   const year = today ? today.year : null;
 
+  // Переключение дня-месяца
+  // const prevHandle = () => console.log("prev");
+  // const todayHandle = () => console.log("today");
+  // const nextHandle = () => console.log("next");
+
   return (
     <ShadowWrapper>
       <CalendarHeader />
-      <PeriodMonitor month={monthName} year={year} />
+      <PeriodMonitor
+        month={monthName}
+        year={year}
+        prevHandle={CalendarNavigate.prevHandle}
+        todayHandle={CalendarNavigate.todayHandle}
+        nextHandle={CalendarNavigate.nextHandle}
+      />
       <Calendar />
     </ShadowWrapper>
   );

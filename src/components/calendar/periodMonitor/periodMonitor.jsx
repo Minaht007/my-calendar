@@ -1,7 +1,4 @@
 import React from "react";
-
-import mainStyle from "../../../scss/_common.scss";
-import { rgb } from "polished";
 import styled from "styled-components";
 
 const DivWraper = styled.div`
@@ -38,7 +35,13 @@ const TodayBtm = styled(BtnWrapper)`
   font-weight: bold;
 `;
 
-const PeriodMonitor = ({ month, year }) => {
+const PeriodMonitor = ({
+  month,
+  year,
+  prevHandle,
+  todayHandle,
+  nextHandle,
+}) => {
   return (
     <DivWraper>
       <div>
@@ -47,9 +50,9 @@ const PeriodMonitor = ({ month, year }) => {
       </div>
 
       <BtnsWrapper>
-        <BtnWrapper> &lt; </BtnWrapper>
-        <TodayBtm>Today</TodayBtm>
-        <BtnWrapper> &gt; </BtnWrapper>
+        <BtnWrapper onClick={prevHandle}> &lt; </BtnWrapper>
+        <TodayBtm onClick={todayHandle}>Today</TodayBtm>
+        <BtnWrapper onClick={nextHandle}> &gt; </BtnWrapper>
       </BtnsWrapper>
     </DivWraper>
   );
