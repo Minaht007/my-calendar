@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const DivWraper = styled.div`
@@ -38,7 +39,7 @@ const TodayBtm = styled(BtnWrapper)`
 const PeriodMonitor = ({
   month,
   year,
-  prevHandle,
+  pfevHandlMonth,
   todayHandle,
   nextHandle,
 }) => {
@@ -50,7 +51,7 @@ const PeriodMonitor = ({
       </div>
 
       <BtnsWrapper>
-        <BtnWrapper onClick={prevHandle}> &lt; </BtnWrapper>
+        <BtnWrapper onClick={pfevHandlMonth}> &lt; </BtnWrapper>
         <TodayBtm onClick={todayHandle}>Today</TodayBtm>
         <BtnWrapper onClick={nextHandle}> &gt; </BtnWrapper>
       </BtnsWrapper>

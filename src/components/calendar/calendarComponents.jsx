@@ -3,8 +3,12 @@ import CalendarHeader from "./calendarHeader/calendarHeader";
 import PeriodMonitor from "./periodMonitor/periodMonitor";
 import Calendar from "../../page/calendar";
 import { getCalendarDates, formatDate } from "../helper/calendarHelper";
-import CalendarNavigate from "../helper/calendarNav";
+// import CalendarNavigate from "../helper/calendarNav";
+import { format, compareAsc } from "date-fns";
+import { sub, addDays, isToday } from "date-fns";
+import { useState } from "react";
 import styled from "styled-components";
+import { months } from "moment/moment";
 
 const ShadowWrapper = styled.div`
   border-radius: 8px;
@@ -16,7 +20,7 @@ const ShadowWrapper = styled.div`
   box-shadow: 0 0 0 0.5px #0ff25a, 0 8px 20px 6px #888;
 `;
 
-const CalendarComponents = ({ prevHandle, todayHandle, nextHandle }) => {
+const CalendarComponents = () => {
   const calendarDates = getCalendarDates();
   const today = calendarDates.find(
     (day) => day.date === formatDate(new Date())
@@ -25,7 +29,21 @@ const CalendarComponents = ({ prevHandle, todayHandle, nextHandle }) => {
   const year = today ? today.year : null;
 
   // Переключение дня-месяца
-  // const prevHandle = () => console.log("prev");
+  const [currenyDay, setCurrendDay] = useState(new Date());
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+
+  const prevHandleDay = () => {
+    const prevDate = sub(currenyDay, { days: 1 });
+    setCurrendDay(prevDate);
+    console.log("prev");
+  };
+
+  const pfevHandlMonth = () => {
+    const prevMonth = sub(currentMonth, { months: 1 });
+    setCurrentMonth(prevMonth);
+    console.log("prev month", prevMonth);
+    return prevMonth;
+  };
   // const todayHandle = () => console.log("today");
   // const nextHandle = () => console.log("next");
 
@@ -35,9 +53,7 @@ const CalendarComponents = ({ prevHandle, todayHandle, nextHandle }) => {
       <PeriodMonitor
         month={monthName}
         year={year}
-        prevHandle={CalendarNavigate.prevHandle}
-        todayHandle={CalendarNavigate.todayHandle}
-        nextHandle={CalendarNavigate.nextHandle}
+        pfevHandlMonth={pfevHandlMonth}
       />
       <Calendar />
     </ShadowWrapper>

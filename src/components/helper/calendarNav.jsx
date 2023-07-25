@@ -19,7 +19,7 @@ const CalendarNavigate = () => {
     console.log("next");
   };
 
-  return <div>{prevHandle}</div>;
+  return <div>{prevHandle()}</div>;
 };
 
 export default CalendarNavigate;
