@@ -40,6 +40,7 @@ const CalendarComponents = () => {
   const pfevHandlMonth = () => {
     const prevMonth = sub(currentMonth, { months: 1 });
     setCurrentMonth(prevMonth);
+    console.log(prevMonth);
     return prevMonth;
   };
   // const todayHandle = () => console.log("today");
