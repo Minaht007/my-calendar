@@ -60,8 +60,10 @@ const CurrentDay = styled.div`
 `;
 
 const CalendarGrid = () => {
-  const { calendar } = useContext(CalendarContext);
+  const [calendar] = useContext(CalendarContext);
   const [currentMonth] = useContext(CalendarContext);
+  console.log(calendar);
+  console.log(currentMonth);
 
   const isCurrentDay = (day) => {
     const today = new Date();
