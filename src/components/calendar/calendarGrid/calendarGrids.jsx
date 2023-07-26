@@ -1,6 +1,12 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { isWeekend } from "date-fns";
+import {
+  isWeekend,
+  startOfMonth,
+  endOfMonth,
+  isSameDay,
+  isWithinInterval,
+} from "date-fns";
 import { CalendarContext } from "../../context/contextWrapper";
 
 const GridWrapper = styled.div`
@@ -53,13 +59,22 @@ const CurrentDay = styled.div`
   }
 `;
 
-const isCurrentDay = (day) => {
-  const todayDay = new Date();
-  return todayDay.getDate() === new Date(day).getDate();
-};
-
 const CalendarGrid = () => {
   const { calendar } = useContext(CalendarContext);
+  const [currentMonth] = useContext(CalendarContext);
+
+  const isCurrentDay = (day) => {
+    const today = new Date();
+    const currentMonthStart = startOfMonth(currentMonth);
+    const currentMonthEnd = endOfMonth(currentMonth);
+    return (
+      isSameDay(today, day) &&
+      isWithinInterval(day, {
+        start: currentMonthStart,
+        end: currentMonthEnd,
+      })
+    );
+  };
 
   return (
     <>

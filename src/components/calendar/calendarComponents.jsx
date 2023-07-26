@@ -28,13 +28,13 @@ const CalendarComponents = () => {
   const monthName = today ? today.monthName : null;
   const year = today ? today.year : null;
 
-  const [currentMonth, setCurrentMonth] = useState(new Date());
-  const { setCurrentDay } = useContext(CalendarContext);
+  const [todayMonth, setTodayMonth] = useState(new Date().getDate());
+  const { currentMonth, setCurrentMonth } = useContext(CalendarContext);
 
   const prevHandelMonth = () => {
-    const prevMonth = sub(currentMonth, { month: 1 });
+    const prevMonth = sub(todayMonth, { month: 1 });
     setCurrentMonth(prevMonth);
-    setCurrentDay((prevDay) => sub(prevDay, 1));
+    // setCurrentMonth((prevMonth) => sub(prevMonth, 1));
   };
 
   return (
