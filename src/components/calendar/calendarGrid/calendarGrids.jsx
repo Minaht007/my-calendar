@@ -66,13 +66,13 @@ const CalendarGrid = () => {
       {calendar && (
         <GridWrapper>
           {calendar?.map((day) => (
-            <CellWrapper key={day.date} date={day?.date}>
+            <CellWrapper key={day?.date} date={day?.date}>
               <RowInCell justifycontent="flex-end">
                 <DayWrapper>
                   <CurrentDay
                     className={isCurrentDay(day?.date) ? "isCurrentDay" : ""}
                   >
-                    {day.date.slice(-2)}
+                    {day?.date.slice(-2)}
                   </CurrentDay>
                 </DayWrapper>
               </RowInCell>
