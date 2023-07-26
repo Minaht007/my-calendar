@@ -4,9 +4,9 @@ export const CalendarContext = createContext(null);
 
 export default function ContextWrapper({ children }) {
   const [calendar, setCalendar] = useState(null);
-  const [currentDay, setCurrentDay] = useState(null);
-  const [currentMonth, setCurrentMonth] = useState(null);
-  const [currentYear, setCurrentYear] = useState(null);
+  const [currentDay, setCurrentDay] = useState(new Date());
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [currentYear, setCurrentYear] = useState(new Date());
 
   return (
     <CalendarContext.Provider
