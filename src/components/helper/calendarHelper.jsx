@@ -11,14 +11,14 @@ const getCurrentMonth = (date) => format(date, "MMMM");
 const getCurrentYear = (date) => format(date, "yyyy");
 const formatDate = (date) => format(date, "yyyy-MM-dd");
 
-const getCalendarDates = () => {
+const getCalendarDates = (data) => {
   const options = {
     year: "numeric",
     month: "long",
     day: "numeric",
     timeZone: "UTC",
   };
-  const today = new Date();
+  const today = data || new Date();
   const startDate = startOfWeek(startOfMonth(today), { weekStartsOn: 1 });
   const endDate = endOfWeek(endOfMonth(today), { weekStartsOn: 1 });
 

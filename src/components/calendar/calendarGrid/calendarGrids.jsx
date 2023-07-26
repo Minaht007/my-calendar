@@ -62,21 +62,25 @@ const CalendarGrid = () => {
   const { calendar } = useContext(CalendarContext);
 
   return (
-    <GridWrapper>
-      {calendar?.map((day) => (
-        <CellWrapper key={day.date} date={day?.date}>
-          <RowInCell justifycontent="flex-end">
-            <DayWrapper>
-              <CurrentDay
-                className={isCurrentDay(day?.date) ? "isCurrentDay" : ""}
-              >
-                {day.date.slice(-2)}
-              </CurrentDay>
-            </DayWrapper>
-          </RowInCell>
-        </CellWrapper>
-      ))}
-    </GridWrapper>
+    <>
+      {calendar && (
+        <GridWrapper>
+          {calendar?.map((day) => (
+            <CellWrapper key={day.date} date={day?.date}>
+              <RowInCell justifycontent="flex-end">
+                <DayWrapper>
+                  <CurrentDay
+                    className={isCurrentDay(day?.date) ? "isCurrentDay" : ""}
+                  >
+                    {day.date.slice(-2)}
+                  </CurrentDay>
+                </DayWrapper>
+              </RowInCell>
+            </CellWrapper>
+          ))}
+        </GridWrapper>
+      )}
+    </>
   );
 };
 
