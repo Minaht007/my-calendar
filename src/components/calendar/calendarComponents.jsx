@@ -6,8 +6,9 @@ import { getCalendarDates, formatDate } from "../helper/calendarHelper";
 // import CalendarNavigate from "../helper/calendarNav";
 
 import { sub, addDays, format, compareAsc } from "date-fns";
-import { useState } from "react";
 import styled from "styled-components";
+import { useContext } from "react";
+import { CalendarContext } from "../context/contextWrapper";
 
 const ShadowWrapper = styled.div`
   border-radius: 8px;
@@ -27,22 +28,11 @@ const CalendarComponents = () => {
   const monthName = today ? today.monthName : null;
   const year = today ? today.year : null;
 
-  // Переключение дня-месяца
-  const [currenyDay, setCurrendDay] = useState(new Date());
-  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const { setCurrentDay } = useContext(CalendarContext);
 
-  // const prevHandleDay = () => {
-  //   const prevDate = sub(currenyDay, { days: 1 });
-  //   setCurrendDay(prevDate);
-  //   console.log("prev");
-  // };
-
-  const pfevHandlMonth = () => {
-    const prevMonth = sub(currentMonth, { months: 1 });
-    setCurrentMonth(prevMonth);
+  const prevHandelMonth = () => {
+    setCurrentDay((prevDay) => sub(prevDay, 1));
   };
-  // const todayHandle = () => console.log("today");
-  // const nextHandle = () => console.log("next");
 
   return (
     <ShadowWrapper>
@@ -50,7 +40,7 @@ const CalendarComponents = () => {
       <PeriodMonitor
         month={monthName}
         year={year}
-        pfevHandlMonth={pfevHandlMonth}
+        prevHandelMonth={prevHandelMonth}
       />
       <Calendar />
     </ShadowWrapper>

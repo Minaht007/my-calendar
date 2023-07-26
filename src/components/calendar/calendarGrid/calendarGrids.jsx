@@ -1,7 +1,7 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { isWeekend } from "date-fns";
+import { CalendarContext } from "../../context/contextWrapper";
 
 const GridWrapper = styled.div`
   display: grid;
@@ -58,21 +58,17 @@ const isCurrentDay = (day) => {
   return todayDay.getDate() === new Date(day).getDate();
 };
 
-const CalendarGrid = ({ calendar }) => {
-  const [todayDay, setTodayDay] = useState(new Date());
-
-  useEffect(() => {
-    setTodayDay(new Date());
-  }, []);
+const CalendarGrid = () => {
+  const { calendar } = useContext(CalendarContext);
 
   return (
     <GridWrapper>
-      {calendar.map((day) => (
-        <CellWrapper key={day.date} date={day.date}>
+      {calendar?.map((day) => (
+        <CellWrapper key={day.date} date={day?.date}>
           <RowInCell justifycontent="flex-end">
             <DayWrapper>
               <CurrentDay
-                className={isCurrentDay(day.date) ? "isCurrentDay" : ""}
+                className={isCurrentDay(day?.date) ? "isCurrentDay" : ""}
               >
                 {day.date.slice(-2)}
               </CurrentDay>
