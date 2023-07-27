@@ -7,13 +7,14 @@ import {
 import { CalendarContext } from "../components/context/contextWrapper";
 
 const Calendar = () => {
-  const { setCalendar, currentDay } = useContext(CalendarContext);
+  const { setCalendar, currentDay, setCurrentMonth } =
+    useContext(CalendarContext);
 
   useEffect(() => {
     const temp = getCalendarDates(currentDay);
     setCalendar(temp);
-  }, [currentDay, setCalendar]);
-
+    setCurrentMonth(currentDay);
+  }, [currentDay, setCalendar, setCurrentMonth]);
   return (
     <div>
       <CalendarGrid />

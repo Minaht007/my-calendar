@@ -7,6 +7,7 @@ import {
   isSameDay,
   isWithinInterval,
   parseISO,
+  format,
 } from "date-fns";
 import { CalendarContext } from "../../context/contextWrapper";
 
@@ -66,6 +67,7 @@ const CalendarGrid = () => {
     const today = new Date();
     const currentMonthStart = startOfMonth(currentMonth);
     const currentMonthEnd = endOfMonth(currentMonth);
+
     return (
       isSameDay(today, parseISO(day)) &&
       isWithinInterval(parseISO(day), {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import CalendarHeader from "./calendarHeader/calendarHeader";
 import PeriodMonitor from "./periodMonitor/periodMonitor";
 import Calendar from "../../page/calendar";
@@ -7,7 +7,7 @@ import { getCalendarDates, formatDate } from "../helper/calendarHelper";
 
 import { sub, addDays, format, compareAsc } from "date-fns";
 import styled from "styled-components";
-import { useContext } from "react";
+
 import { CalendarContext } from "../context/contextWrapper";
 
 const ShadowWrapper = styled.div`
@@ -31,17 +31,23 @@ const CalendarComponents = () => {
   const [todayMonth, setTodayMonth] = useState(new Date().getDate());
   const { currentMonth, setCurrentMonth } = useContext(CalendarContext);
 
+  useEffect(() => {
+    const todayMonth = currentMonth.getDate();
+    setTodayMonth(todayMonth);
+  }, [currentMonth]);
+
   const prevHandelMonth = () => {
-    const prevMonth = sub(todayMonth, { month: 1 });
-    setCurrentMonth(prevMonth);
-    // setCurrentMonth((prevMonth) => sub(prevMonth, 1));
+    const prevMonth = sub(currentMonth, { months: 1 }); // Вернули использование sub для получения предыдущего месяца
+    setCurrentMonth(prevMonth); // Установили предыдущий месяц в состояние currentMonth
   };
 
   return (
     <ShadowWrapper>
       <CalendarHeader />
       <PeriodMonitor
-        month={monthName}
+        month={currentMonth.toLocaleString("en", { month: "long" })}
+        year={year}
+        prevHandelMonth={prevHandelMonth}
         year={year}
         prevHandelMonth={prevHandelMonth}
       />
