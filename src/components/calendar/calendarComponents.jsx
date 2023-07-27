@@ -37,9 +37,8 @@ const CalendarComponents = () => {
   }, [currentMonth]);
 
   const prevHandelMonth = () => {
-    const prevMonth = sub(currentMonth, { months: 1 }); // Вернули использование sub для получения предыдущего месяца
-    setCurrentMonth(prevMonth); // Установили предыдущий месяц в состояние currentMonth
-  };
+    const prevMonth = sub(currentMonth, { months: 1 }); 
+    setCurrentMonth(prevMonth); 
 
   return (
     <ShadowWrapper>
