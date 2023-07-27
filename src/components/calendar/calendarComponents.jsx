@@ -5,7 +5,7 @@ import Calendar from "../../page/calendar";
 import { getCalendarDates, formatDate } from "../helper/calendarHelper";
 // import CalendarNavigate from "../helper/calendarNav";
 
-import { sub, addDays, format, compareAsc } from "date-fns";
+import { sub, addDays, format, compareAsc, add } from "date-fns";
 import styled from "styled-components";
 
 import { CalendarContext } from "../context/contextWrapper";
@@ -25,20 +25,33 @@ const CalendarComponents = () => {
   const today = calendarDates.find(
     (day) => day.date === formatDate(new Date())
   );
-  const monthName = today ? today.monthName : null;
+
   const year = today ? today.year : null;
 
-  const [todayMonth, setTodayMonth] = useState(new Date().getDate());
-  const { currentMonth, setCurrentMonth } = useContext(CalendarContext);
+  const [todayMonth, setTodayMonth, todayYear, setTodayYear] = useState(
+    new Date().getDate()
+  );
+  const { currentMonth, setCurrentMonth, currentYear, setCurrentYear } =
+    useContext(CalendarContext);
 
   useEffect(() => {
     const todayMonth = currentMonth.getDate();
     setTodayMonth(todayMonth);
   }, [currentMonth]);
 
+  // useEffect(() => {
+  //   const todayYear = currentYear.getDate();
+  //   setTodayYear(todayYear);
+  // }, [currentYear]);
+
   const prevHandelMonth = () => {
     const prevMonth = sub(currentMonth, { months: 1 });
     setCurrentMonth(prevMonth);
+  };
+
+  const nextHandelMonth = () => {
+    const nextMonth = add(currentMonth, { months: 1 });
+    setCurrentMonth(nextMonth);
   };
 
   return (
@@ -48,8 +61,7 @@ const CalendarComponents = () => {
         month={currentMonth.toLocaleString("en", { month: "long" })}
         year={year}
         prevHandelMonth={prevHandelMonth}
-        year={year}
-        prevHandelMonth={prevHandelMonth}
+        nextHandelMonth={nextHandelMonth}
       />
       <Calendar />
     </ShadowWrapper>

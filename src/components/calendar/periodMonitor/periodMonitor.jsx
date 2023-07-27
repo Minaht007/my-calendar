@@ -39,6 +39,7 @@ const PeriodMonitor = ({
   month,
   year,
   prevHandelMonth,
+  nextHandelMonth,
   todayHandle,
   nextHandle,
 }) => {
@@ -52,7 +53,7 @@ const PeriodMonitor = ({
       <BtnsWrapper>
         <BtnWrapper onClick={prevHandelMonth}> &lt; </BtnWrapper>
         <TodayBtm onClick={todayHandle}>Today</TodayBtm>
-        <BtnWrapper onClick={nextHandle}> &gt; </BtnWrapper>
+        <BtnWrapper onClick={nextHandelMonth}> &gt; </BtnWrapper>
       </BtnsWrapper>
     </DivWraper>
   );
