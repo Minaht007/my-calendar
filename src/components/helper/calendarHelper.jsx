@@ -5,8 +5,6 @@ import {
   endOfWeek,
   addDays,
   format,
-  getMonth,
-  parseISO,
 } from "date-fns";
 
 const getCurrentMonth = (date) => format(date, "MMMM");

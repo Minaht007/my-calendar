@@ -7,7 +7,6 @@ import {
   isSameDay,
   isWithinInterval,
   parseISO,
-  format,
 } from "date-fns";
 import { CalendarContext } from "../../context/contextWrapper";
 

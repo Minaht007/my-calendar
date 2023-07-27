@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { formatDate, getCalendarDates } from "../helper/calendarHelper.jsx";
+import { getCalendarDates } from "../helper/calendarHelper.jsx";
 
 export const CalendarContext = createContext(null);
 

@@ -5,7 +5,7 @@ import Calendar from "../../page/calendar";
 import { getCalendarDates, formatDate } from "../helper/calendarHelper";
 // import CalendarNavigate from "../helper/calendarNav";
 
-import { sub, addDays, format, compareAsc, add } from "date-fns";
+import { sub, add } from "date-fns";
 import styled from "styled-components";
 
 import { CalendarContext } from "../context/contextWrapper";
@@ -54,6 +54,11 @@ const CalendarComponents = () => {
     setCurrentMonth(nextMonth);
   };
 
+  const todayCurrentMonth = () => {
+    const todayMonth = new Date();
+    setTodayMonth(todayMonth);
+  };
+
   return (
     <ShadowWrapper>
       <CalendarHeader />
@@ -62,6 +67,7 @@ const CalendarComponents = () => {
         year={year}
         prevHandelMonth={prevHandelMonth}
         nextHandelMonth={nextHandelMonth}
+        todayCurrentMonth={todayCurrentMonth}
       />
       <Calendar />
     </ShadowWrapper>
