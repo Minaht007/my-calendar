@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import CalendarGrid from "../components/calendar/calendarGrid/calendarGrids";
 import {
   getCalendarDates,
-  format,
+  forma,
 } from "../components/helper/calendarHelper.jsx";
 import { CalendarContext } from "../components/context/contextWrapper";
 

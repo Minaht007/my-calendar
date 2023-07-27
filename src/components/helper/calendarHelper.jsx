@@ -6,11 +6,12 @@ import {
   addDays,
   format,
   getMonth,
+  parseISO,
 } from "date-fns";
 
 const getCurrentMonth = (date) => format(date, "MMMM");
 const getCurrentYear = (date) => format(date, "yyyy");
-const formatDate = (date) => format(date, "yyyy-MM-dd");
+const formatDate = (date) => format(new Date(date), "yyyy-MM-dd");
 
 const getCalendarDates = (data) => {
   const options = {
