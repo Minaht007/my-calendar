@@ -51,13 +51,9 @@ const CurrentDay = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
-
-  color: ##000000;
-
-  &.isCurrentDay {
-    border-radius: 50%;
-    background-color: #d8f2ee;
-  }
+  color: #000000;
+  background-color: ${(props) =>
+    props.isCurrentDay ? "#d8f2ee" : "transparent"};
 `;
 
 const CalendarGrid = () => {
@@ -87,9 +83,7 @@ const CalendarGrid = () => {
             <CellWrapper key={day?.date} date={day?.date}>
               <RowInCell justifycontent="flex-end">
                 <DayWrapper>
-                  <CurrentDay
-                    className={isCurrentDay(day?.date) ? "isCurrentDay" : ""}
-                  >
+                  <CurrentDay isCurrentDay={isCurrentDay(day?.date)}>
                     {day?.date.slice(-2)}
                   </CurrentDay>
                 </DayWrapper>
