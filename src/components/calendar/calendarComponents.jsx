@@ -5,7 +5,7 @@ import Calendar from "../../page/calendar";
 import { getCalendarDates, formatDate } from "../helper/calendarHelper";
 // import CalendarNavigate from "../helper/calendarNav";
 
-import { sub, add } from "date-fns";
+import { sub, add, setDate, isThisMonth } from "date-fns";
 import styled from "styled-components";
 
 import { CalendarContext } from "../context/contextWrapper";
@@ -31,6 +31,7 @@ const CalendarComponents = () => {
   const [todayMonth, setTodayMonth, todayYear, setTodayYear] = useState(
     new Date().getDate()
   );
+
   const { currentMonth, setCurrentMonth, currentYear, setCurrentYear } =
     useContext(CalendarContext);
 
@@ -47,16 +48,22 @@ const CalendarComponents = () => {
   const prevHandelMonth = () => {
     const prevMonth = sub(currentMonth, { months: 1 });
     setCurrentMonth(prevMonth);
+    if (prevMonth.getMonth() === 11) {
+      setCurrentYear((prevYear) => prevYear - 1);
+    }
   };
 
   const nextHandelMonth = () => {
     const nextMonth = add(currentMonth, { months: 1 });
     setCurrentMonth(nextMonth);
+    if (nextMonth.getMonth() === 0) {
+      setCurrentYear((prevYear) => prevYear + 1);
+    }
   };
 
   const todayCurrentMonth = () => {
-    const todayMonth = new Date();
-    setTodayMonth(todayMonth);
+    setCurrentMonth(new Date());
+    setCurrentYear(new Date());
   };
 
   return (
@@ -64,7 +71,7 @@ const CalendarComponents = () => {
       <CalendarHeader />
       <PeriodMonitor
         month={currentMonth.toLocaleString("en", { month: "long" })}
-        year={year}
+        year={currentYear}
         prevHandelMonth={prevHandelMonth}
         nextHandelMonth={nextHandelMonth}
         todayCurrentMonth={todayCurrentMonth}

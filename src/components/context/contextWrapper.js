@@ -8,7 +8,7 @@ export default function ContextWrapper({ children }) {
   const [calendar, setCalendar] = useState(initialCalendar);
   const [currentDay, setCurrentDay] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [currentYear, setCurrentYear] = useState(new Date());
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
   return (
     <CalendarContext.Provider
