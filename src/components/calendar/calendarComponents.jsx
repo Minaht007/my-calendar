@@ -5,7 +5,7 @@ import Calendar from "../../page/calendar";
 import { getCalendarDates, formatDate } from "../helper/calendarHelper";
 // import CalendarNavigate from "../helper/calendarNav";
 
-import { sub, add } from "date-fns";
+import { sub, add, getYear } from "date-fns";
 import styled from "styled-components";
 
 import { CalendarContext } from "../context/contextWrapper";
@@ -54,7 +54,7 @@ const CalendarComponents = () => {
 
   const todayCurrentMonth = () => {
     setCurrentMonth(new Date());
-    setCurrentYear(new Date());
+    setCurrentYear(new Date().getFullYear());
   };
 
   return (
@@ -62,7 +62,7 @@ const CalendarComponents = () => {
       <CalendarHeader />
       <PeriodMonitor
         month={currentMonth.toLocaleString("en", { month: "long" })}
-        year={currentYear.getFullYear()}
+        year={currentYear.toString()}
         prevHandelMonth={prevHandelMonth}
         nextHandelMonth={nextHandelMonth}
         todayCurrentMonth={todayCurrentMonth}
