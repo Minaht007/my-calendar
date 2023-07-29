@@ -27,6 +27,7 @@ height: 24px;
 margin-right: 2px;
 border-radius: 4px;
 color; #E6E6E6;
+outline: unset;
 `;
 
 const TodayBtm = styled(BtnWrapper)`

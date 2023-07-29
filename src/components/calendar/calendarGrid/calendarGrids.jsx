@@ -13,20 +13,25 @@ import { CalendarContext } from "../../context/contextWrapper";
 const GridWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(6, 1fr);
-  grid-gap: 1px;
-  background-color: rgb(245, 242, 98);
+  grid-gap: ${(props) => (props.isHeader ? 0 : 1)}px;
+  // background-color: rgb(245, 242, 98);
+  background-color: ${(props) =>
+    props.isHeader ? "rgb(161, 201, 240)" : "rgb(245, 242, 98);"};
 `;
 
 const CellWrapper = styled.div`
+  display: flex;
   min-width: 148px;
-  min-height: 80px;
+  min-height: ${(props) => (props.isHeader ? 30 : 80)}px;
+  justify-content: ${(props) => (props.isHeader ? "flex-end" : "flex-end")};
+  align-items: ${(props) => (props.isHeader ? "center" : "")};
+  padding-right: ${(props) => (props.isHeader ? "4" : "")}px;
   background-color: ${(props) =>
     isWeekend(new Date(props.date))
       ? "rgb(60, 153, 240)"
       : "rgb(161, 201, 240)"};
   color: rgb(237, 55, 67);
-  border-radius: 4px;
+  border-radius: ${(props) => (props.isHeader ? 0 : 4)}px;
 `;
 
 const RowInCell = styled.div`
@@ -56,6 +61,8 @@ const CurrentDay = styled.div`
     props.isCurrentDay ? "#d8f2ee" : "transparent"};
 `;
 
+const dayOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
 const CalendarGrid = () => {
   const { calendar, setCalendar, currentMonth } = useContext(CalendarContext);
 
@@ -78,21 +85,24 @@ const CalendarGrid = () => {
 
   return (
     <>
-      {calendar && (
-        <GridWrapper>
-          {calendar?.map((day) => (
-            <CellWrapper key={day?.date} date={day?.date}>
-              <RowInCell justifycontent="flex-end">
-                <DayWrapper>
-                  <CurrentDay isCurrentDay={isCurrentDay(day?.date)}>
-                    {day?.date.slice(-2)}
-                  </CurrentDay>
-                </DayWrapper>
-              </RowInCell>
-            </CellWrapper>
-          ))}
-        </GridWrapper>
-      )}
+      <GridWrapper>
+        {dayOfWeek.map((day) => (
+          <CellWrapper key={day} isHeader justifycontent="flex-end">
+            {day}
+          </CellWrapper>
+        ))}
+        {calendar?.map((day) => (
+          <CellWrapper key={day?.date} date={day?.date}>
+            <RowInCell justifycontent="flex-end">
+              <DayWrapper>
+                <CurrentDay isCurrentDay={isCurrentDay(day?.date)}>
+                  {day?.date.slice(-2)}
+                </CurrentDay>
+              </DayWrapper>
+            </RowInCell>
+          </CellWrapper>
+        ))}
+      </GridWrapper>
     </>
   );
 };
