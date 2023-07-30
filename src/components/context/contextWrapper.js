@@ -5,7 +5,7 @@ export const CalendarContext = createContext(null);
 
 export default function ContextWrapper({ children }) {
   const initialCalendar = getCalendarDates();
-  const [calendar, setCalendar] = useState(initialCalendar);
+  const [calendar, setCalendar] = useState([]);
   const [currentDay, setCurrentDay] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());

@@ -3,9 +3,8 @@ import CalendarHeader from "./calendarHeader/calendarHeader";
 import PeriodMonitor from "./periodMonitor/periodMonitor";
 import Calendar from "../../page/calendar";
 import { getCalendarDates, formatDate } from "../helper/calendarHelper";
-// import CalendarNavigate from "../helper/calendarNav";
 
-import { sub, add, getYear } from "date-fns";
+import { sub, add } from "date-fns";
 import styled from "styled-components";
 
 import { CalendarContext } from "../context/contextWrapper";

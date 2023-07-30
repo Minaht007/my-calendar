@@ -5,8 +5,10 @@ import {
   startOfMonth,
   endOfMonth,
   isSameDay,
+  isSameMonth,
   isWithinInterval,
   parseISO,
+  getMonth,
 } from "date-fns";
 import { CalendarContext } from "../../context/contextWrapper";
 
@@ -14,9 +16,8 @@ const GridWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: ${(props) => (props.isHeader ? 0 : 1)}px;
-  // background-color: rgb(245, 242, 98);
-  background-color: ${(props) =>
-    props.isHeader ? "rgb(161, 201, 240)" : "rgb(245, 242, 98);"};
+  background-color: rgb(245, 242, 98);
+  // color: ${(props) => (props.isSameMonth ? "#37f06b" : "#373b38")};
 `;
 
 const CellWrapper = styled.div`
@@ -30,7 +31,7 @@ const CellWrapper = styled.div`
     isWeekend(new Date(props.date))
       ? "rgb(60, 153, 240)"
       : "rgb(161, 201, 240)"};
-  color: rgb(237, 55, 67);
+  color: #f00524;
   border-radius: ${(props) => (props.isHeader ? 0 : 4)}px;
 `;
 
@@ -56,9 +57,9 @@ const CurrentDay = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
-  color: #000000;
   background-color: ${(props) =>
     props.isCurrentDay ? "#d8f2ee" : "transparent"};
+  color: ${(props) => (props.currentMonth ? "#000000" : "#0d6b28")};
 `;
 
 const dayOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -66,14 +67,10 @@ const dayOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const CalendarGrid = () => {
   const { calendar, setCalendar, currentMonth } = useContext(CalendarContext);
 
-  console.log(calendar);
-  console.log(currentMonth);
-
   const isCurrentDay = (day) => {
     const today = new Date();
     const currentMonthStart = startOfMonth(currentMonth);
     const currentMonthEnd = endOfMonth(currentMonth);
-
     return (
       isSameDay(today, parseISO(day)) &&
       isWithinInterval(parseISO(day), {
@@ -81,6 +78,11 @@ const CalendarGrid = () => {
         end: currentMonthEnd,
       })
     );
+  };
+  const todayMonth = (day) => {
+    const currentMonth = getMonth(new Date());
+    const dayMonth = getMonth(parseISO(day));
+    return currentMonth === dayMonth;
   };
 
   return (
@@ -95,7 +97,10 @@ const CalendarGrid = () => {
           <CellWrapper key={day?.date} date={day?.date}>
             <RowInCell justifycontent="flex-end">
               <DayWrapper>
-                <CurrentDay isCurrentDay={isCurrentDay(day?.date)}>
+                <CurrentDay
+                  isCurrentDay={isCurrentDay(day?.date)}
+                  currentMonth={todayMonth(day?.date)}
+                >
                   {day?.date.slice(-2)}
                 </CurrentDay>
               </DayWrapper>
