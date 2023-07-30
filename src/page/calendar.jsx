@@ -4,14 +4,13 @@ import { getCalendarDates } from "../components/helper/calendarHelper.jsx";
 import { CalendarContext } from "../components/context/contextWrapper";
 
 const Calendar = () => {
-  const { calendar, setCalendar, currentDay, setCurrentMonth } =
+  const { calendar, setCalendar, currentDay, currentMonth, setCurrentMonth } =
     useContext(CalendarContext);
 
   useEffect(() => {
-    const temp = getCalendarDates(currentDay);
+    const temp = getCalendarDates(currentMonth); // Используйте currentMonth для обновления календаря
     setCalendar(temp);
-    setCurrentMonth(currentDay);
-  }, [currentDay, setCalendar, setCurrentMonth]);
+  }, [currentMonth, setCalendar]);
 
   return (
     <div>
