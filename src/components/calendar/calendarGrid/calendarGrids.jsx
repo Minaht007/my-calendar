@@ -5,7 +5,6 @@ import {
   startOfMonth,
   endOfMonth,
   isSameDay,
-  isSameMonth,
   isWithinInterval,
   parseISO,
   getMonth,
@@ -17,7 +16,6 @@ const GridWrapper = styled.div`
   grid-template-columns: repeat(7, 1fr);
   grid-gap: ${(props) => (props.isHeader ? 0 : 1)}px;
   background-color: rgb(245, 242, 98);
-  // color: ${(props) => (props.isSameMonth ? "#37f06b" : "#373b38")};
 `;
 
 const CellWrapper = styled.div`
@@ -31,7 +29,7 @@ const CellWrapper = styled.div`
     isWeekend(new Date(props.date))
       ? "rgb(60, 153, 240)"
       : "rgb(161, 201, 240)"};
-  color: #f00524;
+  color: #ffffff;
   border-radius: ${(props) => (props.isHeader ? 0 : 4)}px;
 `;
 
