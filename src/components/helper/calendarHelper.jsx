@@ -24,7 +24,7 @@ const getCalendarDates = (data) => {
   const endDate = endOfWeek(endOfMonth(today), { weekStartsOn: 1 });
 
   const calendar = [];
-  console.log(calendar);
+
   let currentDay = startDate;
   while (currentDay <= endDate) {
     calendar.push({

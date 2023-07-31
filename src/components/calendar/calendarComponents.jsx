@@ -3,6 +3,7 @@ import CalendarHeader from "./calendarHeader/calendarHeader";
 import PeriodMonitor from "./periodMonitor/periodMonitor";
 import Calendar from "../../page/calendar";
 import { getCalendarDates, formatDate } from "../helper/calendarHelper";
+import TaskList from "../helper/taskList";
 
 import { sub, add } from "date-fns";
 import styled from "styled-components";
@@ -67,6 +68,7 @@ const CalendarComponents = () => {
         todayCurrentMonth={todayCurrentMonth}
       />
       <Calendar />
+      <TaskList currentMonth={currentMonth} />
     </ShadowWrapper>
   );
 };
