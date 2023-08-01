@@ -4,12 +4,12 @@ import PeriodMonitor from "./periodMonitor/periodMonitor";
 import Calendar from "../../page/calendar";
 import { getCalendarDates, formatDate } from "../helper/calendarHelper";
 import TaskList from "../helper/taskList";
-import CalendarWeekGrid from "../calendar/calendarGrid/weekGrid";
-
 import { sub, add } from "date-fns";
 import styled from "styled-components";
-
+import CalendarWeekGrid from "./calendarGrid/weekGrid";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { CalendarContext } from "../context/contextWrapper";
+import "slick-carousel/slick/slick-theme.css";
 
 const ShadowWrapper = styled.div`
   border-radius: 8px;
@@ -60,17 +60,23 @@ const CalendarComponents = () => {
 
   return (
     <ShadowWrapper>
-      <CalendarHeader />
-      <PeriodMonitor
-        month={currentMonth.toLocaleString("en", { month: "long" })}
-        year={currentYear.toString()}
-        prevHandelMonth={prevHandelMonth}
-        nextHandelMonth={nextHandelMonth}
-        todayCurrentMonth={todayCurrentMonth}
-      />
-      <Calendar />
-      <TaskList currentMonth={currentMonth} />
-      <CalendarWeekGrid />
+      <Router>
+        <div>
+          <CalendarHeader />
+          <PeriodMonitor
+            month={currentMonth.toLocaleString("en", { month: "long" })}
+            year={currentYear.toString()}
+            prevHandelMonth={prevHandelMonth}
+            nextHandelMonth={nextHandelMonth}
+            todayCurrentMonth={todayCurrentMonth}
+          />
+          <Routes>
+            <Route path="/" element={<Calendar />} />
+            <Route path="/week" element={<CalendarWeekGrid />} />
+          </Routes>
+          <TaskList currentMonth={currentMonth} />
+        </div>
+      </Router>
     </ShadowWrapper>
   );
 };
