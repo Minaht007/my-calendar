@@ -1,0 +1,13 @@
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.weekdayCalendar {
+  display: grid;
+  flex-direction: row;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: 1fr;
+}

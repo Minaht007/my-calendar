@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import {
   isWeekend,
@@ -10,6 +10,7 @@ import {
   getMonth,
 } from "date-fns";
 import { CalendarContext } from "../../context/contextWrapper";
+import CalendarModal from "../../helper/calendarModal";
 
 const GridWrapper = styled.div`
   display: grid;
@@ -62,8 +63,9 @@ const CurrentDay = styled.div`
 
 const dayOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-const CalendarGrid = () => {
+const CalendarGrid = ({ eventModal }) => {
   const { calendar, setCalendar, currentMonth } = useContext(CalendarContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const isCurrentDay = (day) => {
     const today = new Date();
@@ -83,6 +85,21 @@ const CalendarGrid = () => {
     return currentMonth === dayMonth;
   };
 
+  const handleCellClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    // Обработчик для закрытия модального окна
+    setIsModalOpen(false);
+  };
+
+  const handleModalSave = (eventData) => {
+    // Обработчик для сохранения данных из модального окна
+    console.log("Сохраненные данные:", eventData);
+    setIsModalOpen(false); // Закрываем модальное окно после сохранения
+  };
+
   return (
     <>
       <GridWrapper>
@@ -92,7 +109,12 @@ const CalendarGrid = () => {
           </CellWrapper>
         ))}
         {calendar?.map((day) => (
-          <CellWrapper key={day?.date} date={day?.date}>
+          <CellWrapper
+            key={day?.date}
+            date={day?.date}
+            eventModal
+            onClick={handleCellClick}
+          >
             <RowInCell justifycontent="flex-end">
               <DayWrapper>
                 <CurrentDay
@@ -106,6 +128,13 @@ const CalendarGrid = () => {
           </CellWrapper>
         ))}
       </GridWrapper>
+      {isModalOpen && (
+        <CalendarModal
+          isOpen={isModalOpen}
+          onClose={handleModalClose}
+          onSave={handleModalSave}
+        />
+      )}
     </>
   );
 };

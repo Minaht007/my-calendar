@@ -4,6 +4,7 @@ import PeriodMonitor from "./periodMonitor/periodMonitor";
 import Calendar from "../../page/calendar";
 import { getCalendarDates, formatDate } from "../helper/calendarHelper";
 import TaskList from "../helper/taskList";
+import CalendarWeekGrid from "../calendar/calendarGrid/weekGrid";
 
 import { sub, add } from "date-fns";
 import styled from "styled-components";
@@ -69,6 +70,7 @@ const CalendarComponents = () => {
       />
       <Calendar />
       <TaskList currentMonth={currentMonth} />
+      <CalendarWeekGrid />
     </ShadowWrapper>
   );
 };

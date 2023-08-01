@@ -3,8 +3,9 @@ import CalendarGrid from "../components/calendar/calendarGrid/calendarGrids";
 import { getCalendarDates } from "../components/helper/calendarHelper.jsx";
 import { CalendarContext } from "../components/context/contextWrapper";
 import { sub, add } from "date-fns";
+import CalendarModal from "../components/helper/calendarModal";
 
-const Calendar = () => {
+const Calendar = ({ eventModal }) => {
   const { calendar, setCalendar, currentDay, currentMonth, setCurrentMonth } =
     useContext(CalendarContext);
 
@@ -23,7 +24,7 @@ const Calendar = () => {
 
   return (
     <div>
-      <CalendarGrid />
+      <CalendarGrid eventModal={eventModal} />
     </div>
   );
 };
