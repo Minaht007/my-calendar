@@ -7,7 +7,25 @@
 
 .weekdayCalendar {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  // grid-template-rows: auto repeat(25, 1fr);
-  border: 1px solid #000000;
+  grid-template-columns: 50px repeat(7, 1fr);
+  grid-template-rows: auto repeat(24, 1fr);
+}
+
+.timeScale {
+  display: grid;
+  grid-column: 1/2;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: auto repeat(24, 1fr);
+
+  border-bottom: 1px solid #000000;
+
+  font-size: 12px;
+}
+
+.weekdayCell {
+  display: grid;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  padding: 5px;
+  text-align: center;
 }

@@ -22,20 +22,22 @@ const CalendarWeek = () => {
     <div>
       <h4>Calendar Week</h4>
       <div className={style.weekdayCalendar}>
-        <div className={style.timeScale}>
-          {Array.from({ length: 24 }).map((_, index) => (
-            <div key={index}>{index + 1}</div>
-          ))}
-        </div>
         {getNearestDates().map((date) => {
           const formattedDate = format(date, "d");
           return (
-            <div key={date} className={style.weekdayCell}>
+            <div key={date}>
               <p>{formattedDate}</p>
               {/*place for events */}
             </div>
           );
         })}
+      </div>
+      <div className={style.timeScale}>
+        {Array.from({ length: 24 }).map((_, index) => (
+          <div key={index} className={style.weekdayCell}>
+            {index + 1}{" "}
+          </div>
+        ))}
       </div>
     </div>
   );
