@@ -7,7 +7,7 @@
 
 .weekdayCalendar {
   display: grid;
-  flex-direction: row;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: 1fr;
+  grid-template-columns: repeat(6, 1fr);
+  // grid-template-rows: auto repeat(25, 1fr);
+  border: 1px solid #000000;
 }

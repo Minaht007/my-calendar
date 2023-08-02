@@ -90,14 +90,12 @@ const CalendarGrid = ({ eventModal }) => {
   };
 
   const handleModalClose = () => {
-    // Обработчик для закрытия модального окна
     setIsModalOpen(false);
   };
 
   const handleModalSave = (eventData) => {
-    // Обработчик для сохранения данных из модального окна
-    console.log("Сохраненные данные:", eventData);
-    setIsModalOpen(false); // Закрываем модальное окно после сохранения
+    console.log(eventData);
+    setIsModalOpen(false);
   };
 
   return (

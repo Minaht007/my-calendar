@@ -7,9 +7,8 @@ import TaskList from "../helper/taskList";
 import { sub, add } from "date-fns";
 import styled from "styled-components";
 import CalendarWeekGrid from "./calendarGrid/weekGrid";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CalendarContext } from "../context/contextWrapper";
-import "slick-carousel/slick/slick-theme.css";
 
 const ShadowWrapper = styled.div`
   border-radius: 8px;
