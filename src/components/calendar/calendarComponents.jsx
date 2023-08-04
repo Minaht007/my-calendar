@@ -60,20 +60,22 @@ const CalendarComponents = () => {
   return (
     <ShadowWrapper>
       <Router>
-        <div>
-          <CalendarHeader />
-          <PeriodMonitor
-            month={currentMonth.toLocaleString("en", { month: "long" })}
-            year={currentYear.toString()}
-            prevHandelMonth={prevHandelMonth}
-            nextHandelMonth={nextHandelMonth}
-            todayCurrentMonth={todayCurrentMonth}
-          />
-          <Routes>
-            <Route path="/" element={<Calendar />} />
-            <Route path="/week" element={<CalendarWeekGrid />} />
-          </Routes>
-          <TaskList currentMonth={currentMonth} />
+        <div className="w-full h-full flex-col">
+          <div className="base:max-w-full md:max-w[900px] lg:m=w=[1100px] desk:m-w-[1400px] desk2k:m-w-[200px]">
+            <CalendarHeader />
+            <PeriodMonitor
+              month={currentMonth.toLocaleString("en", { month: "long" })}
+              year={currentYear.toString()}
+              prevHandelMonth={prevHandelMonth}
+              nextHandelMonth={nextHandelMonth}
+              todayCurrentMonth={todayCurrentMonth}
+            />
+            <Routes>
+              <Route path="/" element={<Calendar />} />
+              <Route path="/week" element={<CalendarWeekGrid />} />
+            </Routes>
+            <TaskList currentMonth={currentMonth} />
+          </div>
         </div>
       </Router>
     </ShadowWrapper>

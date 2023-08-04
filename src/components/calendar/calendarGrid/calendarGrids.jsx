@@ -11,6 +11,7 @@ import {
 } from "date-fns";
 import { CalendarContext } from "../../context/contextWrapper";
 import CalendarModal from "../../helper/calendarModal";
+import { useWindowSize } from "react-use";
 
 const GridWrapper = styled.div`
   display: grid;
@@ -21,8 +22,8 @@ const GridWrapper = styled.div`
 
 const CellWrapper = styled.div`
   display: flex;
-  min-width: 148px;
-  min-height: ${(props) => (props.isHeader ? 30 : 80)}px;
+  min-width: 14%;
+  min-height: ${(props) => (props.isHeader ? 3 : 8)}vh;
   justify-content: ${(props) => (props.isHeader ? "flex-end" : "flex-end")};
   align-items: ${(props) => (props.isHeader ? "center" : "")};
   padding-right: ${(props) => (props.isHeader ? "4" : "")}px;
@@ -40,13 +41,13 @@ const RowInCell = styled.div`
 `;
 
 const DayWrapper = styled.div`
-  height: 25px;
-  width: 25px;
+  height: 20%;
+  width: 20%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 4px;
-  margin-top: 4px;
+  margin-right: 50%;
+  margin-top: 30%;
 `;
 
 const CurrentDay = styled.div`
@@ -98,14 +99,19 @@ const CalendarGrid = ({ eventModal }) => {
     setIsModalOpen(false);
   };
 
+  const { width } = useWindowSize();
+  const screenWidth = width;
+  const isMobile = screenWidth < 768;
+
   return (
     <>
       <GridWrapper>
-        {dayOfWeek.map((day) => (
-          <CellWrapper key={day} isHeader justifycontent="flex-end">
-            {day}
-          </CellWrapper>
-        ))}
+        {!isMobile &&
+          dayOfWeek.map((day) => (
+            <CellWrapper key={day} isHeader justifycontent="flex-end">
+              {day}
+            </CellWrapper>
+          ))}
         {calendar?.map((day) => (
           <CellWrapper
             key={day?.date}
