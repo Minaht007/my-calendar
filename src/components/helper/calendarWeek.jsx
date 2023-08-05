@@ -19,13 +19,10 @@ const CalendarWeek = () => {
   };
 
   return (
-    <div className="base:w-full sm:w-full lg:w-[1100px] desk:w-[1400px] desk2k:w-[1900px] h-full px-2 py-3">
+    <div className="w-full h-full px-2 py-3">
       <h4 className="text-red-500 font-bold text-xl">Calendar Week</h4>
-      <button>prev</button>
-      <button>next</button>
-
       <div className="flex w-full h-full overflow-y-scroll">
-        <div className="grid grid-rows-25 w-[50px]">
+        <div className="grid grid-rows-25 grid-cols-[50px]">
           <div className="w-[50px] h-[30px]"></div>
           {Array.from({ length: 24 }).map((_, index) => (
             <div key={index} className="flex h-[30px] items-center">
@@ -39,31 +36,38 @@ const CalendarWeek = () => {
             const isTodayDate = isSameDay(date, today);
 
             return (
-              <div key={date}>
-                <div
-                  className={`grid ${
-                    indexData === 6 ? "lg:grid-rows-10" : "lg:grid-rows-6"
-                  } w-[30px]`}
+              <div
+                key={date}
+                className={`flex-grow relative ${
+                  indexData === 2 ? "lg:h-[90px]" : "lg:h-[30px]"
+                }`}
+              >
+                <p
+                  className={`h-[30px] ${
+                    isTodayDate && indexData === 2
+                      ? "bg-green-300 border-[50%] border-2"
+                      : "bg-transparent"
+                  }`}
                 >
-                  <p className={`h-[30px]`}>{formattedDate}</p>
-                  {Array.from({ length: 24 }).map((_, indexTime) => (
-                    <div
-                      key={indexTime}
-                      className="flex h-[30px] items-center border-b-[1px] border-r-[1px] border-gray-200"
-                      onClick={() => {
-                        alert(formattedDate + " time " + indexTime);
-                      }}
-                      style={{
-                        borderBottom:
-                          indexTime === 23 ? "none" : "1px solid #E5E7EB",
-                        borderRight:
-                          indexData === 6 ? "none" : "1px solid #E5E7EB",
-                      }}
-                    >
-                      <p></p>
-                    </div>
-                  ))}
-                </div>
+                  {formattedDate}
+                </p>
+                {Array.from({ length: 24 }).map((_, indexTime) => (
+                  <div
+                    key={indexTime}
+                    className="flex h-[50px] items-center border-b-[1px] border-r-[1px] border-gray-200"
+                    onClick={() => {
+                      alert(formattedDate + " time " + indexTime);
+                    }}
+                    style={{
+                      borderBottom:
+                        indexTime === 23 ? "none" : "1px solid #E5E7EB",
+                      borderRight:
+                        indexData === 6 ? "none" : "1px solid #E5E7EB",
+                    }}
+                  >
+                    <p></p>
+                  </div>
+                ))}
               </div>
             );
           })}
