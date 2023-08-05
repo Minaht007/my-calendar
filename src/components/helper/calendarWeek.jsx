@@ -43,7 +43,8 @@ const CalendarWeek = () => {
                 }`}
               >
                 <p
-                  className={`h-[30px] ${
+                  // DataCells
+                  className={`base:h-[30px] sm:h-[36px] md:h-[40px] lg:h-[40px] desk:h-[40px] desk2k:h-[40px] ${
                     isTodayDate && indexData === 2
                       ? "bg-green-300 border-[50%] border-2"
                       : "bg-transparent"
@@ -54,7 +55,7 @@ const CalendarWeek = () => {
                 {Array.from({ length: 24 }).map((_, indexTime) => (
                   <div
                     key={indexTime}
-                    className="flex h-[50px] items-center border-b-[1px] border-r-[1px] border-gray-200"
+                    className="flex base:h-[30px] sm:h-[40px] md:h-[48px] lg:h-[56px] desk:h-[64px] desk2k:h-[72px] items-center border-b-[1px] border-r-[1px] border-gray-200"
                     onClick={() => {
                       alert(formattedDate + " time " + indexTime);
                     }}
