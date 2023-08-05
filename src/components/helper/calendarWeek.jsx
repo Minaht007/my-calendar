@@ -19,7 +19,7 @@ const CalendarWeek = () => {
   };
 
   return (
-    <div className="w-full h-full px-2 py-3">
+    <div className="base:w-full sm:w-full lg:w-[1100px] desk:w-[1400px] desk2k:w-[1900px] h-full px-2 py-3">
       <h4 className="text-red-500 font-bold text-xl">Calendar Week</h4>
       <button>prev</button>
       <button>next</button>
