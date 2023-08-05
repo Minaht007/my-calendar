@@ -41,12 +41,12 @@ const RowInCell = styled.div`
 `;
 
 const DayWrapper = styled.div`
-  height: 20%;
-  width: 20%;
+  height: 30%;
+  // width: 20%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 50%;
+  margin-right: 20%;
   margin-top: 30%;
 `;
 
@@ -55,8 +55,8 @@ const CurrentDay = styled.div`
   border-radius: 50%;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 100%;
+  height: 24px;
+  width: 24px;
   background-color: ${(props) =>
     props.isCurrentDay ? "#d8f2ee" : "transparent"};
   color: ${(props) => (props.currentMonth ? "#000000" : "#0d6b28")};
