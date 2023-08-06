@@ -27,6 +27,9 @@ const CalendarWeek = () => {
   return (
     <div className="w-full h-full px-2 py-3 bg-sky-50">
       <h4 className="text-red-500 font-bold text-xl">Calendar Week</h4>
+      <button className="mr-10">&lArr; prev</button>
+      <button>&hArr; today</button>
+      <button className="ml-10">&rArr; next</button>
       <div className="flex w-full h-full overflow-y-scroll">
         <div className="grid grid-rows-25 grid-cols-[50px]">
           <div></div>
