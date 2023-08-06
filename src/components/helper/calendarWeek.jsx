@@ -25,7 +25,7 @@ const CalendarWeek = () => {
   };
 
   return (
-    <div className="w-full h-full px-2 py-3">
+    <div className="w-full h-full px-2 py-3 bg-sky-50">
       <h4 className="text-red-500 font-bold text-xl">Calendar Week</h4>
       <div className="flex w-full h-full overflow-y-scroll">
         <div className="grid grid-rows-25 grid-cols-[50px]">
@@ -51,17 +51,20 @@ const CalendarWeek = () => {
                   indexData === 2 ? "lg:h-[90px]" : "lg:h-[30px]"
                 }`}
               >
-                <p
+                <div
                   // DataCells
-                  className={`base:h-[30px] sm:h-[36px] md:h-[40px] lg:h-[40px] desk:h-[40px] desk2k:h-[40px] ${
+                  className={`base:h-[40px] sm:h-[46px] md:h-[50px] lg:h-[56px] desk:h-[60px] desk2k:h-[40px] ${
                     isTodayDate && indexData === 2
-                      ? "bg-green-300 border-[50%] border-2"
+                      ? "text-red-600"
                       : "bg-transparent"
-                  }`}
+                  } flex flex-col items-center justify-center`}
                 >
-                  {formattedDate}
-                </p>
-                <p>{dayOfWeek[date.dayOfWeekIndex]}</p>
+                  <p>{formattedDate}</p>
+                  <p className="text-rose-900">
+                    {dayOfWeek[date.dayOfWeekIndex]}
+                  </p>
+                </div>
+
                 {Array.from({ length: 24 }).map((_, indexTime) => (
                   <div
                     key={indexTime}
