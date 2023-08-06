@@ -1,19 +1,18 @@
 import React, { useContext } from "react";
 import { CalendarContext } from "../context/contextWrapper";
 import { format, startOfDay, addDays, isSameDay } from "date-fns";
+import WeekNavigate from "./calendarWeekNavigate";
 
 const dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-const CalendarWeek = () => {
+const CalendarWeek = ({ prevWeek, nextWeek }) => {
   const { currentDay } = useContext(CalendarContext);
   const today = new Date();
-
-  console.log(currentDay);
 
   const getNearestDates = () => {
     const firstDayOfWeek = addDays(startOfDay(currentDay), -2);
     const nearestDates = [];
-    console.log(firstDayOfWeek);
+
     for (let i = 0; i < 7; i++) {
       const date = addDays(firstDayOfWeek, i);
       const isTodayDate = isSameDay(date, today);
@@ -27,9 +26,13 @@ const CalendarWeek = () => {
   return (
     <div className="w-full h-full px-2 py-3 bg-sky-50">
       <h4 className="text-red-500 font-bold text-xl">Calendar Week</h4>
-      <button className="mr-10">&lArr; prev</button>
-      <button>&hArr; today</button>
-      <button className="ml-10">&rArr; next</button>
+      <button onClick={() => WeekNavigate.handlePreviousWeek} className="mr-10">
+        &lArr; prev
+      </button>
+      <button>&hArr; Today</button>
+      <button onClick={nextWeek} className="ml-10">
+        &rArr; next
+      </button>
       <div className="flex w-full h-full overflow-y-scroll">
         <div className="grid grid-rows-25 grid-cols-[50px]">
           <div></div>

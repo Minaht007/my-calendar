@@ -1,10 +1,15 @@
 import React, { useContext } from "react";
 import CalendarWeek from "../../helper/calendarWeek";
+import WeekNavigate from "../../helper/calendarWeekNavigate";
 
-const CalendarWeekGrid = () => {
+const CalendarWeekGrid = ({ prevWeek, nextWeek, currentWeek }) => {
   return (
     <div>
-      <CalendarWeek />
+      <CalendarWeek
+        prevWeek={prevWeek}
+        nextWeek={nextWeek}
+        currentWeek={currentWeek}
+      />
     </div>
   );
 };
