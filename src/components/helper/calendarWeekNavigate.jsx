@@ -1,22 +1,22 @@
 import React, { useContext, useState, useEffect } from "react";
-import { getWeek, subDays, startOfDay, addDays } from "date-fns";
+import { sub, startOfDay, addDays, getDate } from "date-fns";
 import { CalendarContext } from "../context/contextWrapper";
 
 const WeekNavigate = ({ prevWeek, nextWeek }) => {
   const [currentDay] = useContext(CalendarContext);
-  const [calendarWeek, setCalendarWeek] = useState(getWeek());
-  const currentWeek = getWeek();
+  const [calendarWeek, setCalendarWeek] = useState();
 
   useEffect(() => {
     const todayWeek = calendarWeek.getDate();
     setCalendarWeek(todayWeek);
-  }, [currentWeek]);
+  }, [calendarWeek]);
 
   const handlePreviousWeek = () => {
-    const todayWeek = new Date();
+    const today = getDate(new Date());
+    const startOfDay = new Date();
     const previousDays = [];
     for (let i = 1; i <= 7; i++) {
-      const previousDate = todayWeek.subDays(i);
+      const previousDate = today.sub(i);
       previousDays.push(startOfDay(previousDate));
     }
     prevWeek(previousDays[0]);
