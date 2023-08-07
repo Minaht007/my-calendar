@@ -6,7 +6,7 @@ import useWeekNavigate from "../helper/calendarWeekNavigate";
 const dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const CalendarWeek = () => {
-  const { currentDay } = useContext(CalendarContext);
+  const { currentDay, setCurrentDay } = useContext(CalendarContext);
   const { handleNextWeek, handlePreviousWeek } = useWeekNavigate();
 
   const today = new Date();

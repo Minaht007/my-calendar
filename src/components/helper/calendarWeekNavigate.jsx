@@ -3,13 +3,25 @@ import { subDays, startOfDay, addDays, getDate } from "date-fns";
 import { CalendarContext } from "../context/contextWrapper";
 
 const useWeekNavigate = () => {
-  const { currentDay, setCurrentDay } = useContext(CalendarContext);
+  const {
+    currentDay,
+    setCurrentDay,
+    currentMonth,
+    setCurrentMonth,
+    setCurrentYear,
+  } = useContext(CalendarContext);
   const [calendarWeek, setCalendarWeek] = useState(new Date());
+  const [todayMonth, setTodayMonth] = useState(new Date().getDate());
 
   useEffect(() => {
     const todayWeek = getDate(calendarWeek);
     setCalendarWeek(todayWeek);
   }, [calendarWeek]);
+
+  useEffect(() => {
+    const todayMonth = currentMonth.getDate();
+    setTodayMonth(todayMonth);
+  }, [currentMonth]);
 
   const handlePreviousWeek = () => {
     let previousDates = [];
@@ -18,6 +30,12 @@ const useWeekNavigate = () => {
       previousDates.push(startOfDay(previousDate));
     }
     setCurrentDay(previousDates[0]);
+    // upgrate month
+    const previousMonth = subDays(currentMonth, 7);
+    setCurrentMonth(previousMonth);
+    if (previousMonth.getMonth() === 11) {
+      setCurrentYear((prevYear) => prevYear - 1);
+    }
   };
 
   const handleNextWeek = () => {
@@ -28,6 +46,12 @@ const useWeekNavigate = () => {
       nextDays.push(startOfDay(nextDate));
     }
     setCurrentDay(nextDays[0]);
+    //   upgrate year
+    const nextMonth = addDays(currentMonth, 7);
+    setCurrentMonth(nextMonth);
+    if (nextMonth.getMonth() === 0) {
+      setCurrentYear((prevYear) => prevYear + 1);
+    }
   };
 
   return {
