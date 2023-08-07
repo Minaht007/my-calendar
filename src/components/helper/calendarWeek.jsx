@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { CalendarContext } from "../context/contextWrapper";
 import { format, startOfDay, addDays, isSameDay } from "date-fns";
-import WeekNavigate from "./calendarWeekNavigate";
+import WeekNavigate from "../helper/calendarWeekNavigate";
 
 const dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -26,7 +26,7 @@ const CalendarWeek = ({ prevWeek, nextWeek }) => {
   return (
     <div className="w-full h-full px-2 py-3 bg-sky-50">
       <h4 className="text-red-500 font-bold text-xl">Calendar Week</h4>
-      <button onClick={() => WeekNavigate.handlePreviousWeek} className="mr-10">
+      <button onClick={prevWeek} className="mr-10">
         &lArr; prev
       </button>
       <button>&hArr; Today</button>
