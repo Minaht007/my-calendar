@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import { CalendarContext } from "../context/contextWrapper";
 import { format, startOfDay, addDays, isSameDay } from "date-fns";
-import WeekNavigate from "../helper/calendarWeekNavigate";
+import useWeekNavigate from "../helper/calendarWeekNavigate";
 
 const dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-const CalendarWeek = ({ prevWeek, nextWeek }) => {
+const CalendarWeek = () => {
   const { currentDay } = useContext(CalendarContext);
+  const { handleNextWeek, handlePreviousWeek } = useWeekNavigate();
+
   const today = new Date();
 
   const getNearestDates = () => {
@@ -26,11 +28,11 @@ const CalendarWeek = ({ prevWeek, nextWeek }) => {
   return (
     <div className="w-full h-full px-2 py-3 bg-sky-50">
       <h4 className="text-red-500 font-bold text-xl">Calendar Week</h4>
-      <button onClick={prevWeek} className="mr-10">
+      <button onClick={handlePreviousWeek} className="mr-10">
         &lArr; prev
       </button>
       <button>&hArr; Today</button>
-      <button onClick={nextWeek} className="ml-10">
+      <button onClick={handleNextWeek} className="ml-10">
         &rArr; next
       </button>
       <div className="flex w-full h-full overflow-y-scroll">
