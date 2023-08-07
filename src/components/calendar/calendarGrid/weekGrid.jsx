@@ -10,7 +10,7 @@ const CalendarWeekGrid = ({
   return (
     <div>
       <CalendarWeek
-        prevWeek={WeekNavigate.handlePreviousWeek()}
+        prevWeek={handlePreviousWeek}
         nextWeek={handleNextWeek}
         currentWeek={currentWeek}
       />
