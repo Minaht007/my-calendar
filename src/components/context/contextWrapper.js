@@ -12,6 +12,8 @@ export default function ContextWrapper({ children }) {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
+  console.log(currentMonth);
+
   useEffect(() => {
     setCurrentMonth(startOfMonth(currentWeek));
     setCurrentYear(currentWeek.getFullYear());

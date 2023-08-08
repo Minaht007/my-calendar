@@ -1,17 +1,10 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { sub, add } from "date-fns";
 import CalendarContext from "../context/contextWrapper";
 
-const CalendarMonthNavigate = () => {
+const useCalendarMonthNavigate = () => {
   const { currentMonth, setCurrentMonth, setCurrentYear } =
     useContext(CalendarContext);
-
-  const [todayMonth, setTodayMonth] = useState(new Date().getDate());
-
-  useEffect(() => {
-    const todayMonth = currentMonth.getDate();
-    setTodayMonth(todayMonth);
-  }, [currentMonth]);
 
   const prevHandelMonth = () => {
     const prevMonth = sub(currentMonth, { months: 1 });
@@ -35,10 +28,10 @@ const CalendarMonthNavigate = () => {
   };
 
   return {
-    prevHandelMonth: prevHandelMonth,
-    todayCurrentMonth: todayCurrentMonth,
-    nextHandelMonth: nextHandelMonth,
+    prevHandelMonth,
+    todayCurrentMonth,
+    nextHandelMonth,
   };
 };
 
-export default CalendarMonthNavigate;
+export default useCalendarMonthNavigate;
