@@ -7,7 +7,8 @@ const dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const CalendarWeek = () => {
   const { currentDay, setCurrentDay } = useContext(CalendarContext);
-  const { handleNextWeek, handlePreviousWeek } = useWeekNavigate();
+  const { handleNextWeek, handlePreviousWeek, todayCurrentWeek } =
+    useWeekNavigate();
 
   const today = new Date();
 
@@ -31,7 +32,7 @@ const CalendarWeek = () => {
       <button onClick={handlePreviousWeek} className="mr-10">
         &lArr; prev
       </button>
-      <button>&hArr; Today</button>
+      <button onClick={todayCurrentWeek}>&hArr; Today</button>
       <button onClick={handleNextWeek} className="ml-10">
         &rArr; next
       </button>
