@@ -6,6 +6,7 @@ import { getCalendarDates, formatDate } from "../helper/calendarHelper";
 // import TaskList from "../helper/taskList";
 import styled from "styled-components";
 import CalendarWeekGrid from "./calendarGrid/weekGrid";
+import CalendarDay from "../helper/calendarDay";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import useCalendarMonthNavigate from "../helper/calendarNav";
@@ -54,6 +55,7 @@ const CalendarComponents = () => {
           <Routes>
             <Route path="/" element={<Calendar />} />
             <Route path="/week" element={<CalendarWeekGrid />} />
+            <Route path="/day" element={<CalendarDay />} />
           </Routes>
           {/* <TaskList /> */}
         </ShadowWrapper>

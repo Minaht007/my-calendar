@@ -25,6 +25,7 @@ const CalendarHeader = ({ onChangeView }) => {
       Title
       <Link to="/">Month</Link>
       <Link to="/week">Week</Link>
+      <Link to="/day">Day</Link>
     </DivWrapper>
   );
 };
