@@ -69,7 +69,7 @@ const CalendarWeek = () => {
                   } flex flex-col items-center justify-center`}
                 >
                   <p>{formattedDate}</p>
-                  <p className="text-rose-900">
+                  <p className=" base:text-xs sm:text-base md:text-base lg:h-[56px] desk:h-[60px] desk2k:h-[40px] text-rose-900">
                     {dayOfWeek[date.dayOfWeekIndex]}
                   </p>
                 </div>
