@@ -1,5 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+// import {
+//   addDoc,
+//   collection,
+//   doc,
+//   getDoc,
+//   getDocs,
+//   query,
+//   setDoc,
+//   updateDoc,
+//   where,
+// } from "firebase/firestore";
+// import { db } from "../../../firebase.config";
 
 const DivWraper = styled.div`
   display: flex;
@@ -43,13 +55,29 @@ const PeriodMonitor = ({
   todayCurrentMonth,
   nextHandelMonth,
 }) => {
+  // const handlerClick = async () => {
+  //   const docRef = doc(db, "tasks", "task1");
+  //   const docSnap = await getDoc(docRef);
+  //   await setDoc(doc(db, "tasks", "task1"), {
+  //     task1: {
+  //       name: "test",
+  //       time: "12:00",
+  //     },
+  //   });
+  // };
   return (
     <DivWraper>
       <div>
         <TitleWrapper>{month}</TitleWrapper>
         <TextWrapper>{year}</TextWrapper>
       </div>
-
+      {/* <button
+        onClick={() => {
+          handlerClick();
+        }}
+      >
+        Test
+      </button> */}
       <BtnsWrapper>
         <BtnWrapper onClick={prevHandelMonth}> &lt; </BtnWrapper>
         <TodayBtm onClick={todayCurrentMonth}>Today</TodayBtm>

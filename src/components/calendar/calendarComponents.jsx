@@ -3,12 +3,13 @@ import CalendarHeader from "./calendarHeader/calendarHeader";
 import PeriodMonitor from "./periodMonitor/periodMonitor";
 import Calendar from "../../page/calendar";
 import { getCalendarDates, formatDate } from "../helper/calendarHelper";
-import TaskList from "../helper/taskList";
+// import TaskList from "../helper/taskList";
 import styled from "styled-components";
 import CalendarWeekGrid from "./calendarGrid/weekGrid";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import CalendarContext from "../context/contextWrapper";
+
 import useCalendarMonthNavigate from "../helper/calendarNav";
+import { CalendarContext } from "../context/contextWrapper";
 
 const ShadowWrapper = styled.div`
   border-radius: 8px;
@@ -54,7 +55,7 @@ const CalendarComponents = () => {
             <Route path="/" element={<Calendar />} />
             <Route path="/week" element={<CalendarWeekGrid />} />
           </Routes>
-          <TaskList />
+          {/* <TaskList /> */}
         </ShadowWrapper>
       </div>
     </Router>

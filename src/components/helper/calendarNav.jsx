@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { sub, add } from "date-fns";
-import CalendarContext from "../context/contextWrapper";
+import { CalendarContext } from "../context/contextWrapper";
 
 const useCalendarMonthNavigate = () => {
   const { currentMonth, setCurrentMonth, setCurrentYear } =
     useContext(CalendarContext);
+  console.log(currentMonth);
 
   const prevHandelMonth = () => {
     const prevMonth = sub(currentMonth, { months: 1 });
