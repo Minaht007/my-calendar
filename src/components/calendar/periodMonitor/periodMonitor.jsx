@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import CalendarMonthNavigate from "../../helper/calendarNav";
 
 const DivWraper = styled.div`
   display: flex;
@@ -21,13 +22,13 @@ const BtnsWrapper = styled.div`
   align-items: center;
 `;
 const BtnWrapper = styled.button`
-border: unset;
-background-color: #c4c0c0;
-height: 24px;
-margin-right: 2px;
-border-radius: 4px;
-color; #E6E6E6;
-outline: unset;
+  border: unset;
+  background-color: #c4c0c0;
+  height: 24px;
+  margin-right: 2px;
+  border-radius: 4px;
+  color: #e6e6e6;
+  outline: unset;
 `;
 
 const TodayBtm = styled(BtnWrapper)`
@@ -40,9 +41,8 @@ const PeriodMonitor = ({
   month,
   year,
   prevHandelMonth,
-  nextHandelMonth,
   todayCurrentMonth,
-  nextHandle,
+  nextHandelMonth,
 }) => {
   return (
     <DivWraper>
@@ -59,4 +59,5 @@ const PeriodMonitor = ({
     </DivWraper>
   );
 };
+
 export default PeriodMonitor;

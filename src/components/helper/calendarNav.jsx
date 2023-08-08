@@ -1,25 +1,44 @@
-import React from "react";
-import { useState } from "react";
-import { sub, addDays, isToday } from "date-fns";
+import { useContext, useState, useEffect } from "react";
+import { sub, add } from "date-fns";
+import CalendarContext from "../context/contextWrapper";
 
-const CalendarNavigate = () => {
-  const [today, setToday] = useState(new Date());
+const CalendarMonthNavigate = () => {
+  const { currentMonth, setCurrentMonth, setCurrentYear } =
+    useContext(CalendarContext);
 
-  const prevHandle = () => {
-    const prevDate = sub(today, { days: 1, months: 1, years: 1 });
-    setToday(prevDate);
-    console.log("prev");
-  };
-  const todayHandle = () => {
-    setToday = new Date();
-  };
-  const nextHandle = () => {
-    const nextDate = addDays(today, { days: 1, months: 1, years: 1 });
-    setToday(nextDate);
-    console.log("next");
+  const [todayMonth, setTodayMonth] = useState(new Date().getDate());
+
+  useEffect(() => {
+    const todayMonth = currentMonth.getDate();
+    setTodayMonth(todayMonth);
+  }, [currentMonth]);
+
+  const prevHandelMonth = () => {
+    const prevMonth = sub(currentMonth, { months: 1 });
+    setCurrentMonth(prevMonth);
+    if (prevMonth.getMonth() === 11) {
+      setCurrentYear((prevYear) => prevYear - 1);
+    }
   };
 
-  return <div>{prevHandle()}</div>;
+  const nextHandelMonth = () => {
+    const nextMonth = add(currentMonth, { months: 1 });
+    setCurrentMonth(nextMonth);
+    if (nextMonth.getMonth() === 0) {
+      setCurrentYear((prevYear) => prevYear + 1);
+    }
+  };
+
+  const todayCurrentMonth = () => {
+    setCurrentMonth(new Date());
+    setCurrentYear(new Date().getFullYear());
+  };
+
+  return {
+    prevHandelMonth: prevHandelMonth,
+    todayCurrentMonth: todayCurrentMonth,
+    nextHandelMonth: nextHandelMonth,
+  };
 };
 
-export default CalendarNavigate;
+export default CalendarMonthNavigate;
