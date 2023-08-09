@@ -62,7 +62,7 @@ const CalendarWeek = () => {
               >
                 <div
                   // DataCells
-                  className={`base:h-[40px] sm:h-[46px] md:h-[50px] lg:h-[56px] desk:h-[60px] desk2k:h-[40px] ${
+                  className={`base:h-[40px] sm:h-[46px] md:h-[50px] lg:h-[56px] desk:h-[60px] desk2k:h-[60px] ${
                     isTodayDate && indexData === 2
                       ? "text-red-600"
                       : "bg-transparent"
