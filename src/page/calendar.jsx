@@ -3,7 +3,7 @@ import CalendarGrid from "../components/calendar/calendarGrid/calendarGrids";
 import { getCalendarDates } from "../components/helper/calendarHelper.jsx";
 import { CalendarContext } from "../components/context/contextWrapper";
 import { sub, add } from "date-fns";
-import CalendarModal from "../components/helper/calendarModal";
+// import CalendarModal from "../components/helper/calendarModal";
 
 const Calendar = ({ eventModal }) => {
   const { calendar, setCalendar, currentDay, currentMonth, setCurrentMonth } =
