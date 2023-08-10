@@ -21,7 +21,7 @@ const ModalOverlay = styled.div`
 
 const ModalContent = styled.div`
   background-color: #fff;
-  padding: 20px;
+
   border-radius: 8px;
   @media screen and (max-width: 400px) {
     width: 60vw;
@@ -71,9 +71,13 @@ const EventModal = ({ isOpen, onClose, onSave }) => {
       <ModalContent className={styles.modalContent}>
         <h2>Add Event</h2>
 
-        <FormControl variant="standard">
+        <FormControl variant="standard" className="w-[80%]">
           <InputLabel htmlFor="component-simple">Name</InputLabel>
-          <Input id="component-simple" defaultValue="" />
+          <Input
+            className="w-[100%] justify-center align-center"
+            id="component-simple"
+            defaultValue=""
+          />
         </FormControl>
 
         {/* <TextField
@@ -84,8 +88,9 @@ const EventModal = ({ isOpen, onClose, onSave }) => {
           size="small"
         /> */}
 
-        <div>
+        <div className="mt-5 w-[90%] flex justify-around ">
           <TextField
+            className="w-[40%] mr-4 pl-9 pr-9"
             id="time"
             label="Start"
             type="time"
@@ -95,6 +100,7 @@ const EventModal = ({ isOpen, onClose, onSave }) => {
             }}
           />
           <TextField
+            className="w-[40%] mr-4 pl-9 pr-9"
             id="time"
             label="End"
             type="time"
