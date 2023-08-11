@@ -6,6 +6,7 @@ export const SvgGenerater = ({ id }) => {
       return (
         <svg
           id="cross"
+          className="w-4 h-4 fill-[red]"
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
           width="32"
