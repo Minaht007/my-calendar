@@ -1,6 +1,6 @@
 import { React } from "react";
 
-export const SvgGenerater = (id) => {
+export const SvgGenerater = ({ id }) => {
   switch (id) {
     case "cross":
       return (
@@ -19,6 +19,7 @@ export const SvgGenerater = (id) => {
     case "circle-dot":
       return (
         <svg
+          id="circle-dot"
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
           width="32"
