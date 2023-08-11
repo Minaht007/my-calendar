@@ -7,6 +7,8 @@ import FormControl from "@mui/material/FormControl";
 import Input from "@mui/material/Input";
 import InputLabel from "@mui/material/InputLabel";
 
+import { SvgGenerater } from "../image/icons/SvgGeneraterSvgSelector";
+
 const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -66,6 +68,8 @@ const EventModal = ({ isOpen, onClose, onSave }) => {
 
   if (!isOpen) return null;
 
+  const icons = ["cross", "disc-2"];
+
   return (
     <ModalOverlay>
       <ModalContent className={styles.modalContent}>
@@ -80,15 +84,7 @@ const EventModal = ({ isOpen, onClose, onSave }) => {
           />
         </FormControl>
 
-        {/* <TextField
-          id="outlined-multiline-flexible"
-          label="title task"
-          multiline
-          maxRows={2}
-          size="small"
-        /> */}
-
-        <div className="mt-5 w-[90%] flex justify-around ">
+        <div className="mt-5 w-[90%] flex justify-around mb-5 ">
           <TextField
             className="w-[40%] mr-4 pl-9 pr-9"
             id="time"
@@ -111,13 +107,20 @@ const EventModal = ({ isOpen, onClose, onSave }) => {
           />
         </div>
 
-        <textarea
-          placeholder="Event Description"
-          value={eventDescription}
-          onChange={handleDescriptionChange}
+        <TextField
+          className="w-[80%] "
+          id="outlined-textarea"
+          label="Multiline Placeholder"
+          placeholder="Placeholder"
+          multiline
         />
+
         <button onClick={handleSave}>Save</button>
         <button onClick={onClose}>Cancel</button>
+
+        <button>
+          <SvgGenerater id={icons["cross"]} />
+        </button>
       </ModalContent>
     </ModalOverlay>
   );
