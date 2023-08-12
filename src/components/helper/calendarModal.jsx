@@ -10,10 +10,6 @@ import InputLabel from "@mui/material/InputLabel";
 import SvgIcon from "@mui/material/SvgIcon";
 import CloseIcon from "@mui/icons-material/Close";
 import AddTaskIcon from "@mui/icons-material/AddTask";
-import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
-import ThreeDRotation from "@mui/icons-material/ThreeDRotation";
-
-import { SvgGenerater } from "../image/icons/SvgGeneraterSvgSelector";
 
 const ModalOverlay = styled.div`
   display: flex;
@@ -31,7 +27,7 @@ const ModalOverlay = styled.div`
 const ModalContent = styled.div`
   position: relative;
 
-  background-color: #fff;
+  background-color: rgb(250, 249, 230);
 
   border-radius: 8px;
   @media screen and (max-width: 400px) {
@@ -132,9 +128,9 @@ const EventModal = ({ isOpen, onClose, onSave }, props) => {
             placeholder="Placeholder"
             multiline
           />
-          <button onClick={handleSave}>
+          <button onClick={handleSave} className="pt-10 pb-10 ">
             {" "}
-            <AddTaskIcon className="w-[40px] h-40px" />
+            <AddTaskIcon className=" text-amber-500 sx={{ fontSize: 200 }}" />
           </button>
           <button onClick={onClose} className="absolute top-3 right-3 ">
             <CloseIcon
