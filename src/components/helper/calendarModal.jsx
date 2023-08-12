@@ -27,18 +27,14 @@ const ModalOverlay = styled.div`
   align-items: center;
 `;
 
-const ModalBtmCloset = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
-
 const ModalContent = styled.div`
-  display: flex;
+  position: relative;
+
   background-color: #fff;
 
   border-radius: 8px;
   @media screen and (max-width: 400px) {
-    width: 60vw;
+    width: 80vw;
     padding: 10px 16px;
   }
   @media screen and (min-width: 401px) and (max-width: 767px) {
@@ -92,11 +88,11 @@ const EventModal = ({ isOpen, onClose, onSave }, props) => {
     <>
       <ModalOverlay>
         <ModalContent className={styles.modalContent}>
-          <ModalBtmCloset>
+          {/* <ModalBtmCloset>
             <button>
               <SvgGenerater id={"cross"} className="flex justify-end" />
             </button>
-          </ModalBtmCloset>
+          </ModalBtmCloset> */}
           <h2>Add Event</h2>
           <FormControl variant="standard" className="w-[80%]">
             <InputLabel htmlFor="component-simple">Name</InputLabel>
@@ -136,9 +132,11 @@ const EventModal = ({ isOpen, onClose, onSave }, props) => {
             multiline
           />
           <button onClick={handleSave}>Save</button>
-          <button onClick={onClose}>
+          <button
+            onClick={onClose}
+            className="absolute top-3 right-3 hover:active-red-500"
+          >
             <CloseIcon icon="close" />
-            Cancel
           </button>
         </ModalContent>
       </ModalOverlay>
