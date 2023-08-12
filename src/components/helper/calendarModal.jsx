@@ -34,7 +34,7 @@ const ModalContent = styled.div`
 
   border-radius: 8px;
   @media screen and (max-width: 400px) {
-    width: 80vw;
+    width: 95vw;
     padding: 10px 16px;
   }
   @media screen and (min-width: 401px) and (max-width: 767px) {
@@ -136,7 +136,7 @@ const EventModal = ({ isOpen, onClose, onSave }, props) => {
             onClick={onClose}
             className="absolute top-3 right-3 hover:active-red-500"
           >
-            <CloseIcon icon="close" />
+            <CloseIcon icon="close" className="group-hover:text-red-500" />
           </button>
         </ModalContent>
       </ModalOverlay>
