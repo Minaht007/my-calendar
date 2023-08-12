@@ -9,6 +9,7 @@ import InputLabel from "@mui/material/InputLabel";
 
 import SvgIcon from "@mui/material/SvgIcon";
 import CloseIcon from "@mui/icons-material/Close";
+import AddTaskIcon from "@mui/icons-material/AddTask";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import ThreeDRotation from "@mui/icons-material/ThreeDRotation";
 
@@ -131,12 +132,15 @@ const EventModal = ({ isOpen, onClose, onSave }, props) => {
             placeholder="Placeholder"
             multiline
           />
-          <button onClick={handleSave}>Save</button>
-          <button
-            onClick={onClose}
-            className="absolute top-3 right-3 hover:active-red-500"
-          >
-            <CloseIcon icon="close" className="group-hover:text-red-500" />
+          <button onClick={handleSave}>
+            {" "}
+            <AddTaskIcon className="w-[40px] h-40px" />
+          </button>
+          <button onClick={onClose} className="absolute top-3 right-3 ">
+            <CloseIcon
+              icon="close"
+              className=" text-emerald-600  hover:bg-red-500  scale: 1.5 rounded-full"
+            />
           </button>
         </ModalContent>
       </ModalOverlay>
