@@ -124,13 +124,13 @@ const EventModal = ({ isOpen, onClose, onSave }, props) => {
           <TextField
             className="w-[80%] "
             id="outlined-textarea"
-            label="Multiline Placeholder"
-            placeholder="Placeholder"
+            label="Task comment"
+            placeholder="type the task"
             multiline
           />
           <button onClick={handleSave} className="pt-10 pb-10 ">
             {" "}
-            <AddTaskIcon className=" text-amber-500 sx={{ fontSize: 200 }}" />
+            <AddTaskIcon className=" text-amber-500 stroke-[60px] " />
           </button>
           <button onClick={onClose} className="absolute top-3 right-3 ">
             <CloseIcon
