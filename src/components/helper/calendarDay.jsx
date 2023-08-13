@@ -1,10 +1,25 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CalendarContext } from "../context/contextWrapper";
 import { format } from "date-fns";
+import CalendarModal from "./calendarModal";
 
-const CalendarDay = () => {
+const CalendarDay = ({ EventModal }) => {
   const { currentDay } = useContext(CalendarContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCellClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleModalSave = (eventData) => {
+    console.log(eventData);
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="bg-teal-50">
@@ -105,6 +120,12 @@ const CalendarDay = () => {
           </button>
         </div>
         <div className="mt-10 pl-4 pr-4 flex-items-center">
+          <CalendarModal
+            isOpen={isModalOpen}
+            onClose={handleModalClose}
+            onSave={handleModalSave}
+          />
+
           {Array.from({ length: 24 }).map((_, index) => (
             <div
               key={index}

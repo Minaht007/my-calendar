@@ -64,7 +64,7 @@ const CurrentDay = styled.div`
 
 const dayOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-const CalendarGrid = ({ eventModal }) => {
+const CalendarGrid = ({ EventModal }) => {
   const { calendar, setCalendar, currentMonth } = useContext(CalendarContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -116,7 +116,7 @@ const CalendarGrid = ({ eventModal }) => {
           <CellWrapper
             key={day?.date}
             date={day?.date}
-            eventModal
+            EventModal
             onClick={handleCellClick}
           >
             <RowInCell justifycontent="flex-end">

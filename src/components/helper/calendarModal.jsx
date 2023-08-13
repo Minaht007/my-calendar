@@ -53,14 +53,6 @@ const ModalContent = styled.div`
   }
 `;
 
-function HomeIcon(props) {
-  return (
-    <SvgIcon {...props}>
-      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-    </SvgIcon>
-  );
-}
-
 const EventModal = ({ isOpen, onClose, onSave }, props) => {
   const [eventTitle, setEventTitle] = useState("");
   const [eventDescription, setEventDescription] = useState("");
@@ -86,12 +78,6 @@ const EventModal = ({ isOpen, onClose, onSave }, props) => {
     <>
       <ModalOverlay>
         <ModalContent className={styles.modalContent}>
-          {/* <ModalBtmCloset>
-            <button>
-              <SvgGenerater id={"cross"} className="flex justify-end" />
-            </button>
-          </ModalBtmCloset> */}
-          <h2>Add Event</h2>
           <FormControl variant="standard" className="w-[80%]">
             <InputLabel htmlFor="component-simple">Task title</InputLabel>
             <Input
