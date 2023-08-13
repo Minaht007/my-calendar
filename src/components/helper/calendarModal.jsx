@@ -10,6 +10,7 @@ import InputLabel from "@mui/material/InputLabel";
 import SvgIcon from "@mui/material/SvgIcon";
 import CloseIcon from "@mui/icons-material/Close";
 import AddTaskIcon from "@mui/icons-material/AddTask";
+import { lightGreen } from "@mui/material/colors";
 
 const ModalOverlay = styled.div`
   display: flex;
@@ -92,16 +93,16 @@ const EventModal = ({ isOpen, onClose, onSave }, props) => {
           </ModalBtmCloset> */}
           <h2>Add Event</h2>
           <FormControl variant="standard" className="w-[80%]">
-            <InputLabel htmlFor="component-simple">Name</InputLabel>
+            <InputLabel htmlFor="component-simple">Task title</InputLabel>
             <Input
               className="w-[100%] justify-center align-center"
               id="component-simple"
               defaultValue=""
             />
           </FormControl>
-          <div className="mt-5 w-[90%] flex justify-around mb-5 ">
+          <div className="mt-8 w-[90%] flex justify-around mb-10 ">
             <TextField
-              className="w-[40%] mr-4 pl-9 pr-9"
+              className="w-[40%] mr-4 "
               id="time"
               label="Start"
               type="time"
@@ -111,7 +112,7 @@ const EventModal = ({ isOpen, onClose, onSave }, props) => {
               }}
             />
             <TextField
-              className="w-[40%] mr-4 pl-9 pr-9"
+              className="w-[40%] mr-4 "
               id="time"
               label="End"
               type="time"
@@ -122,15 +123,15 @@ const EventModal = ({ isOpen, onClose, onSave }, props) => {
             />
           </div>
           <TextField
-            className="w-[80%] "
+            className="w-[80%]"
             id="outlined-textarea"
             label="Task comment"
             placeholder="type the task"
             multiline
           />
-          <button onClick={handleSave} className="pt-10 pb-10 ">
+          <button onClick={handleSave} className="pt-10 pb-6 ">
             {" "}
-            <AddTaskIcon className=" text-amber-500 stroke-[60px] " />
+            <AddTaskIcon fontSize="large" sx={{ color: lightGreen[500] }} />
           </button>
           <button onClick={onClose} className="absolute top-3 right-3 ">
             <CloseIcon
