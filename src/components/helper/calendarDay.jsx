@@ -7,8 +7,10 @@ import CalendarModal from "./calendarModal";
 const CalendarDay = ({ EventModal }) => {
   const { currentDay } = useContext(CalendarContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCell, setSelectedCell] = useState(null);
 
-  const handleCellClick = () => {
+  const handleCellClick = (date, time) => {
+    setSelectedCell({ date, time });
     setIsModalOpen(true);
   };
 
@@ -129,6 +131,7 @@ const CalendarDay = ({ EventModal }) => {
           {Array.from({ length: 24 }).map((_, index) => (
             <div
               key={index}
+              onClick={() => handleCellClick(currentDay, index)}
               className="flex base:h-[40px] sm:h-[46px] md:h-[50px] lg:h-[56px] desk:h-[80px] desk2k:h-[100px] base:text-[0.74em] sm:text-[0.875em] md:text-[0.875em] lg:text-[1em] desk:text-[1.125em] desk2k:text-[1.5em] items-center  border-b-2 border-red-200"
             >
               <p>{index + 1}</p>
@@ -136,6 +139,14 @@ const CalendarDay = ({ EventModal }) => {
           ))}
         </div>
       </div>
+      {isModalOpen && (
+        <CalendarModal
+          isOpen={isModalOpen}
+          onClose={handleModalClose}
+          onSave={handleModalSave}
+          selectedCell={selectedCell}
+        />
+      )}
     </div>
   );
 };
