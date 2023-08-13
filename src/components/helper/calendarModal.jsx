@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import styles from "../helper/helper.module.scss";
 import TextField from "@mui/material/TextField";
+import { DateField } from "@mui/x-date-pickers/DateField";
 
 import FormControl from "@mui/material/FormControl";
 import Input from "@mui/material/Input";
 import InputLabel from "@mui/material/InputLabel";
 
-import SvgIcon from "@mui/material/SvgIcon";
 import CloseIcon from "@mui/icons-material/Close";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import { lightGreen } from "@mui/material/colors";
+import { CalendarContext } from "../context/contextWrapper";
+import { format } from "date-fns";
 
 const ModalOverlay = styled.div`
   display: flex;
@@ -58,6 +60,8 @@ const EventModal = ({ isOpen, onClose, onSave }, props) => {
   const [eventDescription, setEventDescription] = useState("");
   const [selectedTime, setSelectedTime] = useState(new Date());
 
+  const { currentDay } = useContext(CalendarContext);
+
   const handleTitleChange = (e) => {
     setEventTitle(e.target.value);
   };
@@ -74,10 +78,20 @@ const EventModal = ({ isOpen, onClose, onSave }, props) => {
 
   if (!isOpen) return null;
 
+  const formattedCurrentDay = format(currentDay, "MMMM dd, EEEE");
+
   return (
     <>
       <ModalOverlay>
         <ModalContent className={styles.modalContent}>
+          <input
+            type="text"
+            value={formattedCurrentDay}
+            className="bg-[rgb(250, 249, 230)] w-[80%] p-2 rounded-md "
+            style={{
+              backgroundColor: "rgb(250, 249, 230)",
+            }}
+          />
           <FormControl variant="standard" className="w-[80%]">
             <InputLabel htmlFor="component-simple">Task title</InputLabel>
             <Input
