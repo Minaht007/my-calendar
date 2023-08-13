@@ -3,11 +3,14 @@ import { useContext, useState } from "react";
 import { CalendarContext } from "../context/contextWrapper";
 import { format } from "date-fns";
 import CalendarModal from "./calendarModal";
+import useWeekNavigate from "./calendarWeekNavigate";
 
 const CalendarDay = ({ EventModal }) => {
   const { currentDay } = useContext(CalendarContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCell, setSelectedCell] = useState(null);
+  const { handleNextWeek, handlePreviousWeek, todayCurrentWeek } =
+    useWeekNavigate();
 
   const handleCellClick = (date, time) => {
     setSelectedCell({ date, time });
@@ -31,7 +34,7 @@ const CalendarDay = ({ EventModal }) => {
       <div className="pt-[15px]">
         <p>{format(currentDay, "eeee, MMMM dd")}</p>
         <div className="pt-[15px]">
-          <button className="mr-[60px]">
+          <button className="mr-[60px]" onClick={handlePreviousWeek}>
             <svg
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"

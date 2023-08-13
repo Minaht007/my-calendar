@@ -18,10 +18,6 @@ const CalendarWeek = ({ EventModal }) => {
     setIsModalOpen(true);
   };
 
-  // const handleCellClick = () => {
-  //   setIsModalOpen(true);
-  // };
-
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
