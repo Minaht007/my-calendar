@@ -1,16 +1,15 @@
 import React from "react";
 import { useContext, useState } from "react";
 import { CalendarContext } from "../context/contextWrapper";
-import { format } from "date-fns";
+import { format, subDays, addDays, startOfMonth } from "date-fns";
 import CalendarModal from "./calendarModal";
 import useWeekNavigate from "./calendarWeekNavigate";
 
 const CalendarDay = ({ EventModal }) => {
-  const { currentDay } = useContext(CalendarContext);
+  const { currentDay, setCurrentDay, setCurrentMonth, setCurrentYear } =
+    useContext(CalendarContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCell, setSelectedCell] = useState(null);
-  const { handleNextWeek, handlePreviousWeek, todayCurrentWeek } =
-    useWeekNavigate();
 
   const handleCellClick = (date, time) => {
     setSelectedCell({ date, time });
@@ -26,6 +25,22 @@ const CalendarDay = ({ EventModal }) => {
     setIsModalOpen(false);
   };
 
+  const handlePreviousDay = () => {
+    const previousWeek = subDays(currentDay, 1);
+    setCurrentDay(previousWeek);
+  };
+
+  const handleNextDay = () => {
+    const nextWeek = addDays(currentDay, 1);
+    setCurrentDay(nextWeek);
+  };
+
+  const todayCurrentDay = () => {
+    const today = new Date();
+    setCurrentDay(today);
+    setCurrentMonth(startOfMonth(today));
+    setCurrentYear(today.getFullYear());
+  };
   return (
     <div className="bg-teal-50">
       <h3 className="base:text-[0.74em] sm:text-[0.875em] md:text-[0.875em] lg:text-[1em] desk:text-[1.125em] desk2k:text-[1.5em]">
@@ -34,7 +49,7 @@ const CalendarDay = ({ EventModal }) => {
       <div className="pt-[15px]">
         <p>{format(currentDay, "eeee, MMMM dd")}</p>
         <div className="pt-[15px]">
-          <button className="mr-[60px]" onClick={handlePreviousWeek}>
+          <button className="mr-[60px]" onClick={handlePreviousDay}>
             <svg
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
@@ -42,6 +57,7 @@ const CalendarDay = ({ EventModal }) => {
               height="32"
               viewBox="0 0 32 32"
               transform="scale(-1, 1)"
+              fill="green"
             >
               <title>milestone-thin-border</title>
               <path
@@ -73,19 +89,20 @@ const CalendarDay = ({ EventModal }) => {
               ></path>
             </svg>
           </button>
-          <button>
+          <button onClick={todayCurrentDay}>
             <svg
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
               width="32"
               height="32"
               viewBox="0 0 32 32"
+              fill="red"
             >
               <title>home3</title>
               <path d="M32 19l-6-6v-9h-4v5l-6-6-16 16v1h4v10h10v-6h4v6h10v-10h4z"></path>
             </svg>
           </button>
-          <button className="ml-[60px]">
+          <button className="ml-[60px]" onClick={handleNextDay}>
             <svg
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
