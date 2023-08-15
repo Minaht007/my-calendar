@@ -26,7 +26,7 @@ import {
   setDoc,
   updateDoc,
   where,
-} from "firebase/firestore";
+} from "@firebase/firestore";
 import { db } from "../../firebase.config";
 
 const ModalOverlay = styled.div`
