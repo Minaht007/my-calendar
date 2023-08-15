@@ -78,7 +78,7 @@ const EventModal = ({ isOpen, onClose, onSave }) => {
   const [endTime, setEndTime] = useState("");
   const [taskComment, setTaskComment] = useState("");
 
-  const id = nanoid();
+  const id = currentDay(format);
 
   const handleTitleChange = (e) => {
     setTaskTitle(e.target.value);
@@ -99,7 +99,7 @@ const EventModal = ({ isOpen, onClose, onSave }) => {
   const handleSave = async () => {
     const docRef = doc(db, "calendar", "task");
     const docSnap = await getDoc(docRef);
-    await setDoc(doc(db, "calendar", "task1"), {
+    await setDoc(doc(db, "calendar", startTime), {
       task1: {
         id: id,
         name: taskTitle,

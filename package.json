@@ -11,6 +11,7 @@
     "@testing-library/react": "^13.4.0",
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
+    "firebase": "^10.1.0",
     "grid": "^4.10.8",
     "nanoid": "^4.0.2",
     "polished": "^4.2.2",
@@ -30,8 +31,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "serve": "json-server -p 5000  --watch db.json"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
