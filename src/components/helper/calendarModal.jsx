@@ -78,7 +78,7 @@ const EventModal = ({ isOpen, onClose, onSave }) => {
   const [endTime, setEndTime] = useState("");
   const [taskComment, setTaskComment] = useState("");
 
-  const id = currentDay(format);
+  const id = nanoid();
 
   const handleTitleChange = (e) => {
     setTaskTitle(e.target.value);
