@@ -14,6 +14,8 @@ import { lightGreen } from "@mui/material/colors";
 import { CalendarContext } from "../context/contextWrapper";
 import { format } from "date-fns";
 
+import { nanoid } from "nanoid";
+
 import {
   addDoc,
   collection,
@@ -68,17 +70,15 @@ const ModalContent = styled.div`
   }
 `;
 
-const EventModal = ({ isOpen, onClose, onSave }, props) => {
-  const [eventTitle, setEventTitle] = useState("");
-  const [eventDescription, setEventDescription] = useState("");
-  const [selectedTime, setSelectedTime] = useState(new Date());
-
+const EventModal = ({ isOpen, onClose, onSave }) => {
   const { currentDay } = useContext(CalendarContext);
 
   const [taskTitle, setTaskTitle] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [taskComment, setTaskComment] = useState("");
+
+  const id = nanoid();
 
   const handleTitleChange = (e) => {
     setTaskTitle(e.target.value);
@@ -101,6 +101,7 @@ const EventModal = ({ isOpen, onClose, onSave }, props) => {
     const docSnap = await getDoc(docRef);
     await setDoc(doc(db, "calendar", "task1"), {
       task1: {
+        id: id,
         name: taskTitle,
         startTime: startTime,
         endTime: endTime,
@@ -109,10 +110,6 @@ const EventModal = ({ isOpen, onClose, onSave }, props) => {
     });
     onClose();
   };
-  // onSave({ title: eventTitle, description: eventDescription });
-  // setEventTitle("");
-  // setEventDescription("");
-  // };
 
   if (!isOpen) return null;
 

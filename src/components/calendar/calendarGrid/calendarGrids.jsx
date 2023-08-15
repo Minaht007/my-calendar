@@ -68,6 +68,9 @@ const CalendarGrid = ({ EventModal }) => {
   const { calendar, setCalendar, currentMonth } = useContext(CalendarContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [selectedEvent, setSelectedEvent] = useState({ title: "", date: "" });
+  const [selectedTitle, setSelectedTitle] = useState("");
+
   const isCurrentDay = (day) => {
     const today = new Date();
     const currentMonthStart = startOfMonth(currentMonth);
@@ -86,7 +89,8 @@ const CalendarGrid = ({ EventModal }) => {
     return currentMonth === dayMonth;
   };
 
-  const handleCellClick = () => {
+  const handleCellClick = (title) => {
+    setSelectedTitle(title);
     setIsModalOpen(true);
   };
 
@@ -117,7 +121,7 @@ const CalendarGrid = ({ EventModal }) => {
             key={day?.date}
             date={day?.date}
             EventModal
-            onClick={handleCellClick}
+            onClick={() => handleCellClick(day?.title)}
           >
             <RowInCell justifycontent="flex-end">
               <DayWrapper>
@@ -125,7 +129,7 @@ const CalendarGrid = ({ EventModal }) => {
                   isCurrentDay={isCurrentDay(day?.date)}
                   currentMonth={todayMonth(day?.date)}
                 >
-                  {day?.date.slice(-2)}
+                  {day?.date.slice(-2)} {day?.title}
                 </CurrentDay>
               </DayWrapper>
             </RowInCell>
@@ -137,6 +141,7 @@ const CalendarGrid = ({ EventModal }) => {
           isOpen={isModalOpen}
           onClose={handleModalClose}
           onSave={handleModalSave}
+          selectedTitle={selectedTitle}
         />
       )}
     </>
