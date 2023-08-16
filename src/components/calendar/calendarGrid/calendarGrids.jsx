@@ -141,7 +141,6 @@ const CalendarGrid = ({ EventModal }) => {
         });
       }
 
-      // Update the calendar state with the new task
       const updatedCalendar = calendar.map((day) => {
         if (day.date === date) {
           return {
