@@ -116,15 +116,52 @@ const CalendarGrid = ({ EventModal }) => {
     const id = nanoid();
 
     try {
-      await setDoc(doc(db, "calendar", date), {
-        [id]: {
-          id: id,
-          name: title,
-          startTime: startTime,
-          endTime: endTime,
-          textTask: taskComment,
-        },
+      const docRef = doc(db, "calendar", date);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        await updateDoc(docRef, {
+          [id]: {
+            id: id,
+            name: title,
+            startTime: startTime,
+            endTime: endTime,
+            textTask: taskComment,
+          },
+        });
+      } else {
+        await setDoc(docRef, {
+          [id]: {
+            id: id,
+            name: title,
+            startTime: startTime,
+            endTime: endTime,
+            textTask: taskComment,
+          },
+        });
+      }
+
+      // Update the calendar state with the new task
+      const updatedCalendar = calendar.map((day) => {
+        if (day.date === date) {
+          return {
+            ...day,
+            tasks: {
+              ...day.tasks,
+              [id]: {
+                id: id,
+                name: title,
+                startTime: startTime,
+                endTime: endTime,
+                textTask: taskComment,
+              },
+            },
+          };
+        }
+        return day;
       });
+
+      setCalendar(updatedCalendar);
       setIsModalOpen(false);
     } catch (error) {
       console.error("Error saving event:", error);

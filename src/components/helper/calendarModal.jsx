@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import styles from "../helper/helper.module.scss";
 import TextField from "@mui/material/TextField";
-import { DateField } from "@mui/x-date-pickers/DateField";
 
 import FormControl from "@mui/material/FormControl";
 import Input from "@mui/material/Input";
@@ -153,7 +152,7 @@ const EventModal = ({ isOpen, onClose, onSave, selectedTitle }) => {
             <Input
               className="w-[100%] justify-center align-center"
               id="title"
-              value={title}
+              value={selectedTitle}
               onChange={handleTitleChange}
             />
           </FormControl>
