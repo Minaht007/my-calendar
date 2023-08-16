@@ -12,6 +12,19 @@ import {
 import { CalendarContext } from "../../context/contextWrapper";
 import CalendarModal from "../../helper/calendarModal";
 import { useWindowSize } from "react-use";
+import { nanoid } from "nanoid";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+} from "@firebase/firestore";
+import { db } from "../../../firebase.config";
 
 const GridWrapper = styled.div`
   display: grid;
@@ -98,9 +111,24 @@ const CalendarGrid = ({ EventModal }) => {
     setIsModalOpen(false);
   };
 
-  const handleModalSave = (eventData) => {
-    console.log(eventData);
-    setIsModalOpen(false);
+  const handleModalSave = async (eventData, title) => {
+    const { date, startTime, endTime, taskComment } = eventData;
+    const id = nanoid();
+
+    try {
+      await setDoc(doc(db, "calendar", date), {
+        [id]: {
+          id: id,
+          name: title,
+          startTime: startTime,
+          endTime: endTime,
+          textTask: taskComment,
+        },
+      });
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Error saving event:", error);
+    }
   };
 
   const { width } = useWindowSize();
@@ -140,7 +168,7 @@ const CalendarGrid = ({ EventModal }) => {
         <CalendarModal
           isOpen={isModalOpen}
           onClose={handleModalClose}
-          onSave={handleModalSave}
+          onSave={(eventData) => handleModalSave(eventData, selectedTitle)}
           selectedTitle={selectedTitle}
         />
       )}

@@ -70,18 +70,21 @@ const ModalContent = styled.div`
   }
 `;
 
-const EventModal = ({ isOpen, onClose, onSave }) => {
+const EventModal = ({ isOpen, onClose, onSave, selectedTitle }) => {
   const { currentDay } = useContext(CalendarContext);
 
-  const [taskTitle, setTaskTitle] = useState("");
+  const [title, setTitle] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [taskComment, setTaskComment] = useState("");
 
+  console.log(title);
+  console.log(setTitle);
+
   const id = nanoid();
 
   const handleTitleChange = (e) => {
-    setTaskTitle(e.target.value);
+    setTitle(e.target.value);
   };
 
   const handleStartTimeChange = (e) => {
@@ -97,18 +100,36 @@ const EventModal = ({ isOpen, onClose, onSave }) => {
   };
 
   const handleSave = async () => {
-    const docRef = doc(db, "calendar", "task");
-    const docSnap = await getDoc(docRef);
-    await setDoc(doc(db, "calendar", startTime), {
-      task1: {
-        id: id,
-        name: taskTitle,
-        startTime: startTime,
-        endTime: endTime,
-        textTask: taskComment,
-      },
-    });
-    onClose();
+    try {
+      const docRef = doc(db, "calendar", startTime);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        await updateDoc(docRef, {
+          [id]: {
+            id: id,
+            name: title,
+            startTime: startTime,
+            endTime: endTime,
+            textTask: taskComment,
+          },
+        });
+      } else {
+        await setDoc(docRef, {
+          [id]: {
+            id: id,
+            name: title,
+            startTime: startTime,
+            endTime: endTime,
+            textTask: taskComment,
+          },
+        });
+      }
+
+      onClose();
+    } catch (error) {
+      console.error("Error saving event:", error);
+    }
   };
 
   if (!isOpen) return null;
@@ -132,7 +153,7 @@ const EventModal = ({ isOpen, onClose, onSave }) => {
             <Input
               className="w-[100%] justify-center align-center"
               id="title"
-              value={taskTitle}
+              value={title}
               onChange={handleTitleChange}
             />
           </FormControl>
