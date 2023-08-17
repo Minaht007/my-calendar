@@ -1,0 +1,10 @@
+.link {
+  text-decoration: none;
+  color: white;
+  margin: 0 5px;
+
+  &:global(.active) {
+    font-weight: bold;
+    color: red;
+  }
+}

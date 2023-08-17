@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Auth from "./Auth";
 
 const DivWrapper = styled.div`
   background-color: #2a2b2d;
@@ -21,11 +22,14 @@ const CalendarHeader = ({ onChangeView }) => {
   };
 
   return (
-    <DivWrapper className="flex justify-around items-center pl-4 pr-4">
-      <Link to="/">Month</Link>
-      <Link to="/week">Week</Link>
-      <Link to="/day">Day</Link>
-    </DivWrapper>
+    <>
+      <DivWrapper className="flex justify-around items-center pl-4 pr-4">
+        <Link to="/">Month</Link>
+        <Link to="/week">Week</Link>
+        <Link to="/day">Day</Link>
+        <Auth />
+      </DivWrapper>
+    </>
   );
 };
 
