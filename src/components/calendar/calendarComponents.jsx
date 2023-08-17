@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import useCalendarMonthNavigate from "../helper/calendarNav";
 import { CalendarContext } from "../context/contextWrapper";
+import UserRouters from "../../UserRouters";
 
 const ShadowWrapper = styled.div`
   border-radius: 8px;
@@ -58,6 +59,7 @@ const CalendarComponents = () => {
         </Routes> */}
         {/* <TaskList /> */}
       </ShadowWrapper>
+      <UserRouters />
     </div>
   );
 };
