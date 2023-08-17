@@ -112,14 +112,16 @@ const CalendarGrid = ({ EventModal }) => {
   };
 
   const handleModalSave = async (eventData, title) => {
-    const { date, startTime, endTime, taskComment } = eventData;
+    const { date, startTime, endTime, taskComment, name } = eventData;
     const id = nanoid();
 
     try {
-      const docRef = doc(db, "calendar", date);
+      const docRef = doc(db, "calendar", date, name);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
+        const existingName = docSnap.data()[id]?.name;
+
         await updateDoc(docRef, {
           [id]: {
             id: id,
@@ -129,6 +131,26 @@ const CalendarGrid = ({ EventModal }) => {
             textTask: taskComment,
           },
         });
+
+        // Если у документа уже было значение "name", обновляем его в состоянии calendar
+        if (existingName) {
+          const updatedCalendar = calendar.map((day) => {
+            if (day.date === date) {
+              return {
+                ...day,
+                tasks: {
+                  ...day.tasks,
+                  [id]: {
+                    ...day.tasks[id],
+                    name: title,
+                  },
+                },
+              };
+            }
+            return day;
+          });
+          setCalendar(updatedCalendar);
+        }
       } else {
         await setDoc(docRef, {
           [id]: {
@@ -139,28 +161,29 @@ const CalendarGrid = ({ EventModal }) => {
             textTask: taskComment,
           },
         });
+
+        const updatedCalendar = calendar.map((day) => {
+          if (day.date === date) {
+            return {
+              ...day,
+              tasks: {
+                ...day.tasks,
+                [id]: {
+                  id: id,
+                  name: title,
+                  startTime: startTime,
+                  endTime: endTime,
+                  textTask: taskComment,
+                },
+              },
+            };
+          }
+          return day;
+        });
+
+        setCalendar(updatedCalendar);
       }
 
-      const updatedCalendar = calendar.map((day) => {
-        if (day.date === date) {
-          return {
-            ...day,
-            tasks: {
-              ...day.tasks,
-              [id]: {
-                id: id,
-                name: title,
-                startTime: startTime,
-                endTime: endTime,
-                textTask: taskComment,
-              },
-            },
-          };
-        }
-        return day;
-      });
-
-      setCalendar(updatedCalendar);
       setIsModalOpen(false);
     } catch (error) {
       console.error("Error saving event:", error);
@@ -184,7 +207,6 @@ const CalendarGrid = ({ EventModal }) => {
           <CellWrapper
             key={day?.date}
             date={day?.date}
-            EventModal
             onClick={() => handleCellClick(day?.title)}
           >
             <RowInCell justifycontent="flex-end">
@@ -193,7 +215,10 @@ const CalendarGrid = ({ EventModal }) => {
                   isCurrentDay={isCurrentDay(day?.date)}
                   currentMonth={todayMonth(day?.date)}
                 >
-                  {day?.date.slice(-2)} {day?.title}
+                  {day?.date.slice(-2)}{" "}
+                  {day?.tasks &&
+                    day?.tasks[selectedTitle] &&
+                    day?.tasks[selectedTitle].name}
                 </CurrentDay>
               </DayWrapper>
             </RowInCell>
