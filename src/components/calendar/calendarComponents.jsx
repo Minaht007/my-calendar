@@ -40,27 +40,25 @@ const CalendarComponents = () => {
   const { prevHandelMonth, todayCurrentMonth, nextHandelMonth } =
     useCalendarMonthNavigate();
   return (
-    <Router>
-      <div className="base:max-w-full md:max-w[900px] lg:m=w=[1100px] desk:m-w-[1400px] desk2k:m-w-[200px]">
-        <ShadowWrapper>
-          <CalendarHeader />
-          <PeriodMonitor
-            month={currentMonth.toLocaleString("en", { month: "long" })}
-            year={currentYear.toString()}
-            prevHandelMonth={() => prevHandelMonth()}
-            todayCurrentMonth={() => todayCurrentMonth()}
-            nextHandelMonth={() => nextHandelMonth()}
-          />
+    <div className="base:max-w-full md:max-w[900px] lg:m=w=[1100px] desk:m-w-[1400px] desk2k:m-w-[200px]">
+      <ShadowWrapper>
+        <CalendarHeader />
+        <PeriodMonitor
+          month={currentMonth.toLocaleString("en", { month: "long" })}
+          year={currentYear.toString()}
+          prevHandelMonth={() => prevHandelMonth()}
+          todayCurrentMonth={() => todayCurrentMonth()}
+          nextHandelMonth={() => nextHandelMonth()}
+        />
 
-          <Routes>
-            <Route path="/" element={<Calendar />} />
-            <Route path="/week" element={<CalendarWeekGrid />} />
-            <Route path="/day" element={<CalendarDay />} />
-          </Routes>
-          {/* <TaskList /> */}
-        </ShadowWrapper>
-      </div>
-    </Router>
+        <Routes>
+          <Route path="/" element={<Calendar />} />
+          <Route path="/week" element={<CalendarWeekGrid />} />
+          <Route path="/day" element={<CalendarDay />} />
+        </Routes>
+        {/* <TaskList /> */}
+      </ShadowWrapper>
+    </div>
   );
 };
 
