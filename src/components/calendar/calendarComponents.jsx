@@ -51,11 +51,11 @@ const CalendarComponents = () => {
           nextHandelMonth={() => nextHandelMonth()}
         />
 
-        <Routes>
+        {/* <Routes>
           <Route path="/" element={<Calendar />} />
           <Route path="/week" element={<CalendarWeekGrid />} />
           <Route path="/day" element={<CalendarDay />} />
-        </Routes>
+        </Routes> */}
         {/* <TaskList /> */}
       </ShadowWrapper>
     </div>
