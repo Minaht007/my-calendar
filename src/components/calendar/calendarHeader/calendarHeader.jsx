@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Auth from "./Auth";
+import UserRouters from "../../../UserRouters";
 
 const DivWrapper = styled.div`
   background-color: #2a2b2d;
@@ -27,8 +28,10 @@ const CalendarHeader = ({ onChangeView }) => {
         <Link to="/">Month</Link>
         <Link to="/week">Week</Link>
         <Link to="/day">Day</Link>
+
         <Auth />
       </DivWrapper>
+      <UserRouters />
     </>
   );
 };
