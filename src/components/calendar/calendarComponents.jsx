@@ -1,17 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import CalendarHeader from "./calendarHeader/calendarHeader";
 import PeriodMonitor from "./periodMonitor/periodMonitor";
-import Calendar from "../../page/calendar";
-import { getCalendarDates, formatDate } from "../helper/calendarHelper";
-// import TaskList from "../helper/taskList";
 import styled from "styled-components";
-import CalendarWeekGrid from "./calendarGrid/weekGrid";
-import CalendarDay from "../helper/calendarDay";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import useCalendarMonthNavigate from "../helper/calendarNav";
 import { CalendarContext } from "../context/contextWrapper";
-import UserRouters from "../../UserRouters";
 
 const ShadowWrapper = styled.div`
   border-radius: 8px;
@@ -24,19 +17,7 @@ const ShadowWrapper = styled.div`
 `;
 
 const CalendarComponents = () => {
-  // const calendarDates = getCalendarDates();
-  // const today = calendarDates.find(
-  //   (day) => day.date === formatDate(new Date())
-  // );
-
-  // const [todayMonth, setTodayMonth] = useState(new Date().getDate());
-
   const { currentMonth, currentYear } = useContext(CalendarContext);
-
-  // useEffect(() => {
-  //   const todayMonth = currentMonth.getDate();
-  //   setTodayMonth(todayMonth);
-  // }, [currentMonth]);
 
   const { prevHandelMonth, todayCurrentMonth, nextHandelMonth } =
     useCalendarMonthNavigate();
@@ -51,15 +32,7 @@ const CalendarComponents = () => {
           todayCurrentMonth={() => todayCurrentMonth()}
           nextHandelMonth={() => nextHandelMonth()}
         />
-
-        {/* <Routes>
-          <Route path="/" element={<Calendar />} />
-          <Route path="/week" element={<CalendarWeekGrid />} />
-          <Route path="/day" element={<CalendarDay />} />
-        </Routes> */}
-        {/* <TaskList /> */}
       </ShadowWrapper>
-      <UserRouters />
     </div>
   );
 };

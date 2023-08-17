@@ -9,15 +9,17 @@ const WeekPage = lazy(() =>
 const DayPage = lazy(() => import("./components/helper/calendarDay"));
 
 const UserRouters = () => {
-  <Suspense fallback={<div>Loading...</div>}>
-    <Routes>
-      <Route path="/" element={<MonthPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/week" element={<WeekPage />} />
-      <Route path="/day" element={<DayPage />} />
-    </Routes>{" "}
-    ;
-  </Suspense>;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="/" element={<MonthPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/week" element={<WeekPage />} />
+        <Route path="/day" element={<DayPage />} />
+      </Routes>{" "}
+      ;
+    </Suspense>
+  );
 };
 
 export default UserRouters;
