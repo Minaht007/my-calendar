@@ -31,7 +31,6 @@ const CalendarHeader = ({ onChangeView }) => {
 
         <Auth />
       </DivWrapper>
-      <UserRouters />
     </>
   );
 };

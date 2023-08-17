@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import useCalendarMonthNavigate from "../helper/calendarNav";
 import { CalendarContext } from "../context/contextWrapper";
+import UserRouters from "../../UserRouters";
 
 const ShadowWrapper = styled.div`
   border-radius: 8px;
@@ -32,6 +33,7 @@ const CalendarComponents = () => {
           todayCurrentMonth={() => todayCurrentMonth()}
           nextHandelMonth={() => nextHandelMonth()}
         />
+        <UserRouters />
       </ShadowWrapper>
     </div>
   );

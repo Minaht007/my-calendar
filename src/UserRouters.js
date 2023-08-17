@@ -16,8 +16,7 @@ const UserRouters = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/week" element={<WeekPage />} />
         <Route path="/day" element={<DayPage />} />
-      </Routes>{" "}
-      ;
+      </Routes>
     </Suspense>
   );
 };
