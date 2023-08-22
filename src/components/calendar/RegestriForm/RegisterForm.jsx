@@ -12,12 +12,12 @@ const RegisterForm = ({ onSubmit }) => {
 const {name, email, password} = state
 
   return (
-<div>
+<div className={style.formContainer}>
   <form className={style.form} omSubmit={handleSubmit}>
   <TextField value={name} onChange={handleChange} {...fields.name}/>
   <TextField value={email}  onChange={handleChange} {...fields.email}/>
   <TextField value={password} onChange={handleChange} {...fields.password} />
-    <Button>Sign In</Button>
+    <Button>Sign in</Button>
 
   </form>
   
