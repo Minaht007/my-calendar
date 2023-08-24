@@ -8,8 +8,6 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 
-
-
 import style from "./RegestriForm.module.scss"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import {setUser} from "../../../redux/auth/auth-slice.js"
@@ -24,25 +22,22 @@ const RegisterForm = () => {
 
 
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
+  const handleRegister = (email, password) => {
+    // e.preventDefault();
     const auth = getAuth();
     try {
-      const userCredential = await createUserWithEmailAndPassword(
+       createUserWithEmailAndPassword(
         auth,
         email,
         password
-      );
-      const user = userCredential.user;      
-      dispatch(
-        setUser({
-          email: auth.email,
-          id: auth.uid,
-          token: "",
-        })        
-      );
-      console.log(setUser)
-      navigate("/");
+      ).then(({ user }) => {
+        dispatch(setUser({
+          email: user.email,
+          id: user.uid,
+          token: user.accessToken
+        }) )
+      })
+      navigate("/")
     } catch (error) {
       console.error("Registration failed:", error);
     }
