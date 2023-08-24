@@ -5,36 +5,48 @@ import fields from "./fields"
 import Button from "../button/Button"
 import { useState } from "react"
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+
 
 
 import style from "./RegestriForm.module.scss"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import {setUser} from "../../../redux/auth/auth-slice"
+import {setUser} from "../../../redux/auth/auth-slice.js"
 
-const RegisterForm = ({ onSubmit }) => {
-  // const { state, handleChange, handleSubmit } = useForm(InitialState, onSubmit);
+const RegisterForm = () => {
+ 
   const [name, setName] = useState("");
-const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const handleRegister = (e) => {
+
+
+  const handleRegister = async (e) => {
     e.preventDefault();
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        dispatch(
-          setUser({
-            email: user.email,
-            id: user.uid,
-            token: "", 
-          })
-        );
-      })
-      .catch((error) => {
-        console.error("Registration failed:", error);
-      });
-};
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;      
+      dispatch(
+        setUser({
+          email: auth.email,
+          id: auth.uid,
+          token: "",
+        })        
+      );
+      console.log(setUser)
+      navigate("/");
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
+  };
   
   const handleChange = (e) => {
     e.preventDefault()
@@ -46,9 +58,18 @@ const [password, setPassword] = useState("");
     } else if (name === "password") {
       return setPassword(value)
     }
-
-
   }
+
+   // const handlerClick = async () => {
+  //   const docRef = doc(db, "tasks", "task1");
+  //   const docSnap = await getDoc(docRef);
+  //   await setDoc(doc(db, "tasks", "task1"), {
+  //     task1: {
+  //       name: "test",
+  //       time: "12:00",
+  //     },
+  //   });
+  // };
 
 // const {name, email, password} = state
 
