@@ -41,10 +41,11 @@ const RegisterForm = () => {
         email,
         password
       );
-      const userDocRef = doc(db, "users", user.uid);
+      const userDocRef = doc(db, "users", email);
       await setDoc(userDocRef, {
         name,
         email: user.email,
+        id: user.uid,
       });
       navigate("/");
     } catch (error) {
@@ -64,13 +65,13 @@ const RegisterForm = () => {
     }
   };
 
-  const handlerClick = async (email, id) => {
-    const userDocRef = doc(db, "users", email);
-    await setDoc(userDocRef, {
-      id,
-      email,
-    });
-  };
+  // const handlerClick = async (email, id) => {
+  //   const userDocRef = doc(db, "users", email);
+  //   await setDoc(userDocRef, {
+  //     id,
+  //     email,
+  //   });
+  // };
 
   // const {name, email, password} = state
 
