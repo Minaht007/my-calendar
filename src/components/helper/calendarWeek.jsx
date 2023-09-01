@@ -128,5 +128,3 @@ const CalendarWeek = ({ EventModal }) => {
 };
 
 export default CalendarWeek;
-
-// Точкаотсчета

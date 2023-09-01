@@ -29,23 +29,23 @@ import { db } from "../../../firebase.config";
 const GridWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-gap: ${(props) => (props.isHeader ? 0 : 1)}px;
+  grid-gap: ${(props) => (props.isheader ? 0 : 1)}px;
   background-color: rgb(245, 242, 98);
 `;
 
 const CellWrapper = styled.div`
   display: flex;
   min-width: 14%;
-  min-height: ${(props) => (props.isHeader ? 3 : 8)}vh;
-  justify-content: ${(props) => (props.isHeader ? "flex-end" : "flex-end")};
-  align-items: ${(props) => (props.isHeader ? "center" : "")};
-  padding-right: ${(props) => (props.isHeader ? "4" : "")}px;
+  min-height: ${(props) => (props.isheader ? "3vh" : "8vh")};
+  justify-content: ${(props) => (props.isheader ? "flex-end" : "flex-end")};
+  align-items: ${(props) => (props.isheader ? "center" : "flex-start")};
+  padding-right: ${(props) => (props.isheader ? "4" : "0")}px;
   background-color: ${(props) =>
     isWeekend(new Date(props.date))
       ? "rgb(60, 153, 240)"
       : "rgb(161, 201, 240)"};
   color: #ffffff;
-  border-radius: ${(props) => (props.isHeader ? 0 : 4)}px;
+  border-radius: ${(props) => (props.isheader ? 0 : 4)}px;
 `;
 
 const RowInCell = styled.div`
@@ -55,7 +55,7 @@ const RowInCell = styled.div`
 
 const DayWrapper = styled.div`
   height: 30%;
-  // width: 20%;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -132,7 +132,6 @@ const CalendarGrid = ({ EventModal }) => {
           },
         });
 
-        // Если у документа уже было значение "name", обновляем его в состоянии calendar
         if (existingName) {
           const updatedCalendar = calendar.map((day) => {
             if (day.date === date) {
@@ -199,7 +198,7 @@ const CalendarGrid = ({ EventModal }) => {
       <GridWrapper>
         {!isMobile &&
           dayOfWeek.map((day) => (
-            <CellWrapper key={day} isHeader justifycontent="flex-end">
+            <CellWrapper key={day} isheader justifycontent="flex-end">
               {day}
             </CellWrapper>
           ))}
@@ -208,6 +207,7 @@ const CalendarGrid = ({ EventModal }) => {
             key={day?.date}
             date={day?.date}
             onClick={() => handleCellClick(day?.title)}
+            isheader={false}
           >
             <RowInCell justifycontent="flex-end">
               <DayWrapper>

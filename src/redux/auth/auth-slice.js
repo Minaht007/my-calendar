@@ -13,8 +13,9 @@ import initialState from "../../components/calendar/RegestriForm/InitialState.js
 const authSlice = createSlice({
     name: "auth",
     initialState,
-    extraReducers: {
-        setUser(state, action) {
+    reducers: {
+        setUser(state, action) {     
+            console.log(action.payload);
             state.email = action.payload.email;
             state.token = action.payload.token;
             state.id = action.payload.id;
