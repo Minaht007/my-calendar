@@ -40,46 +40,17 @@ const RegisterForm = () => {
         auth,
         email,
         password
-      ).then(({ user }) => {
-        dispatch(
-          setUser({
-            email: user.email,
-            id: user.uid,
-            token: user.accessToken,
-          })
-        );
+      );
+      const userDocRef = doc(db, "users", user.uid);
+      await setDoc(userDocRef, {
+        name,
+        email: user.email,
       });
       navigate("/");
     } catch (error) {
       console.error("Registration failed:", error);
     }
   };
-
-  // const handleRegister = async (e) => {
-  //   e.preventDefault();
-
-  //   const auth = getAuth();
-
-  //   try {
-  //     const { user } = await createUserWithEmailAndPassword(
-  //       auth,
-  //       email,
-  //       password
-  //     );
-
-  //     // Сохраняем информацию о пользователе в Firestore
-  //     const userDocRef = doc(db, "users", user.uid);
-  //     await setDoc(userDocRef, {
-  //       name,
-  //       email: user.email,
-  //     });
-
-  //     // Перенаправляем пользователя на главную страницу
-  //     navigate("/");
-  //   } catch (error) {
-  //     console.error("Registration failed:", error);
-  //   }
-  // };
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -93,10 +64,10 @@ const RegisterForm = () => {
     }
   };
 
-  const handlerClick = async (email, name) => {
+  const handlerClick = async (email, id) => {
     const userDocRef = doc(db, "users", email);
     await setDoc(userDocRef, {
-      name,
+      id,
       email,
     });
   };
@@ -105,13 +76,6 @@ const RegisterForm = () => {
 
   return (
     <div className={style.formContainer}>
-      <button
-        onClick={() => {
-          dispatch(setUser("qweert"));
-        }}
-      >
-        TEST
-      </button>
       <form className={style.form} onSubmit={handleRegister}>
         <TextField value={name} onChange={handleChange} {...fields.name} />
         <TextField value={email} onChange={handleChange} {...fields.email} />
@@ -120,11 +84,57 @@ const RegisterForm = () => {
           onChange={handleChange}
           {...fields.password}
         />
-        <Button type="submit" onClick={handlerClick}>
-          Sign in
-        </Button>
+        <Button type="submit">Sign in</Button>
       </form>
     </div>
   );
 };
 export default RegisterForm;
+
+// const handleRegister = async (e) => {
+//   e.preventDefault();
+
+//   const auth = getAuth();
+
+//   try {
+//     const { user } = await createUserWithEmailAndPassword(
+//       auth,
+//       email,
+//       password
+//     );
+
+//     // Сохраняем информацию о пользователе в Firestore
+//     const userDocRef = doc(db, "users", user.uid);
+//     await setDoc(userDocRef, {
+//       name,
+//       email: user.email,
+//     });
+
+//     // Перенаправляем пользователя на главную страницу
+//     navigate("/");
+//   } catch (error) {
+//     console.error("Registration failed:", error);
+//   }
+// };
+
+// first var
+// const handleRegister = async (e) => {
+//   e.preventDefault();
+//   const auth = getAuth();
+//   createUserWithEmailAndPassword(auth, email, password)
+//     .then(({ user }) => {
+//       dispatch(
+//         setUser({
+//           email: user.email,
+//           id: user.uid,
+//           token: user.accessToken,
+//         })
+//       );
+//     })
+//     .catch((error) => {
+//       console.error("Registration failed:", error);
+//     });
+//   navigate("/");
+// };
+
+// onClick = { handlerClick };
